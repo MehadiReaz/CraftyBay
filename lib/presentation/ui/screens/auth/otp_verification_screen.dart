@@ -1,0 +1,147 @@
+import 'package:e_commerce_app/presentation/ui/utility/app_colors.dart';
+import 'package:e_commerce_app/presentation/ui/utility/image_assets.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:pin_code_fields/pin_code_fields.dart';
+
+class OTPVerificationScreen extends StatefulWidget {
+  const OTPVerificationScreen({super.key});
+
+  @override
+  State<OTPVerificationScreen> createState() => _OTPVerificationScreenState();
+}
+
+class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: SafeArea(
+          child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: SingleChildScrollView(
+          //physics: NeverScrollableScrollPhysics(),
+          child: Column(
+            children: [
+              SizedBox(
+                height: 120,
+              ),
+              Center(
+                child: SvgPicture.asset(
+                  ImageAssets.craftyBayLogoSVG,
+                  width: 120,
+                ),
+              ),
+              SizedBox(
+                height: 16,
+              ),
+              Text('Enter OTP Code',
+                  style: Theme.of(context)
+                      .textTheme
+                      .titleLarge
+                      ?.copyWith(fontSize: 24)),
+              SizedBox(
+                height: 12,
+              ),
+              Text(
+                'A 4 Digit OTP Code has been Sent',
+                style: Theme.of(context)
+                    .textTheme
+                    .titleMedium
+                    ?.copyWith(color: Colors.grey),
+              ),
+              SizedBox(
+                height: 24,
+              ),
+              // TextFormField(),
+              PinCodeTextField(
+                keyboardType: TextInputType.number,
+                length: 4,
+                obscureText: false,
+                animationType: AnimationType.fade,
+
+                pinTheme: PinTheme(
+                  shape: PinCodeFieldShape.box,
+                  borderRadius: BorderRadius.circular(5),
+                  fieldHeight: 50,
+                  fieldWidth: 50,
+                  // activeFillColor: Colors.white,
+                  inactiveColor: AppColor.primaryColor,
+                  //  activeColor: Colors.white,
+                  selectedColor: AppColor.primaryColor,
+                  inactiveFillColor: Colors.white,
+                  selectedFillColor: Colors.white,
+                ),
+                autoUnfocus: true,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                animationDuration: Duration(milliseconds: 300),
+                //backgroundColor: Colors.blue.shade50,
+                enableActiveFill: true,
+                //errorAnimationController: errorController,
+                //controller: textEditingController,
+                onCompleted: (v) {
+                  print("Completed");
+                },
+                onChanged: (value) {
+                  print(value);
+                  setState(() {
+                    // currentText = value;
+                  });
+                },
+                beforeTextPaste: (text) {
+                  print("Allowing to paste $text");
+                  //if you return true then it will show the paste confirmation dialog. Otherwise if false, then nothing will happen.
+                  //but you can show anything you want here, like your pop up saying wrong paste format or etc
+                  return true;
+                },
+                appContext: context,
+              ),
+              SizedBox(
+                height: 12,
+              ),
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: () {},
+                  child: Text('Next'),
+                ),
+              ),
+              SizedBox(
+                height: 35,
+              ),
+              RichText(
+                text: TextSpan(
+                  children: [
+                    TextSpan(
+                      text: 'This code will expire in ',
+                      style: Theme.of(context)
+                          .textTheme
+                          .titleMedium
+                          ?.copyWith(color: Colors.grey),
+                    ),
+                    TextSpan(
+                      text: '120s',
+                      style: Theme.of(context)
+                          .textTheme
+                          .titleMedium
+                          ?.copyWith(color: AppColor.primaryColor),
+                    ),
+                  ],
+                ),
+              ),
+              TextButton(
+                onPressed: () {},
+                child: Text(
+                  'Resend Code',
+                  style: Theme.of(context)
+                      .textTheme
+                      .titleMedium
+                      ?.copyWith(color: Colors.grey),
+                ),
+              ),
+            ],
+          ),
+        ),
+      )),
+    );
+  }
+}
