@@ -15,6 +15,26 @@ class CraftyBay extends StatelessWidget {
         // progressIndicatorTheme: const ProgressIndicatorThemeData(
         //   color: Color.fromRGBO(7, 174, 175, 1),
         // ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+              padding: EdgeInsets.symmetric(vertical: 12),
+              textStyle: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w600,
+                letterSpacing: 0.5,
+              ),
+              shape: ContinuousRectangleBorder(
+                  borderRadius: BorderRadius.circular(8))),
+        ),
+        inputDecorationTheme: InputDecorationTheme(
+          contentPadding: EdgeInsets.symmetric(horizontal: 16),
+          border:
+              OutlineInputBorder(borderSide: BorderSide(color: Colors.grey)),
+          enabledBorder:
+              OutlineInputBorder(borderSide: BorderSide(color: Colors.grey)),
+          disabledBorder:
+              OutlineInputBorder(borderSide: BorderSide(color: Colors.grey)),
+        ),
       ),
       home: SplashScreen(),
       debugShowCheckedModeBanner: false,
