@@ -64,9 +64,9 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
                   borderRadius: BorderRadius.circular(5),
                   fieldHeight: 50,
                   fieldWidth: 50,
-                  // activeFillColor: Colors.white,
+                  activeFillColor: Colors.white,
                   inactiveColor: AppColor.primaryColor,
-                  //  activeColor: Colors.white,
+                  activeColor: AppColor.primaryColor,
                   selectedColor: AppColor.primaryColor,
                   inactiveFillColor: Colors.white,
                   selectedFillColor: Colors.white,
@@ -79,16 +79,16 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
                 //errorAnimationController: errorController,
                 //controller: textEditingController,
                 onCompleted: (v) {
-                  print("Completed");
+                  // print("Completed");
                 },
                 onChanged: (value) {
-                  print(value);
-                  setState(() {
-                    // currentText = value;
-                  });
+                  // print(value);
+                  //  setState(() {
+                  // currentText = value;
+                  // });
                 },
                 beforeTextPaste: (text) {
-                  print("Allowing to paste $text");
+                  //print("Allowing to paste $text");
                   //if you return true then it will show the paste confirmation dialog. Otherwise if false, then nothing will happen.
                   //but you can show anything you want here, like your pop up saying wrong paste format or etc
                   return true;
@@ -108,26 +108,82 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
               SizedBox(
                 height: 35,
               ),
-              RichText(
-                text: TextSpan(
-                  children: [
-                    TextSpan(
-                      text: 'This code will expire in ',
-                      style: Theme.of(context)
-                          .textTheme
-                          .titleMedium
-                          ?.copyWith(color: Colors.grey),
-                    ),
-                    TextSpan(
-                      text: '120s',
-                      style: Theme.of(context)
-                          .textTheme
-                          .titleMedium
-                          ?.copyWith(color: AppColor.primaryColor),
-                    ),
-                  ],
-                ),
+
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    'This code will expire in ',
+                    style: Theme.of(context)
+                        .textTheme
+                        .titleMedium
+                        ?.copyWith(color: Colors.grey),
+                  ),
+                  TweenAnimationBuilder<Duration>(
+                      duration: Duration(seconds: 120),
+                      tween: Tween(
+                          begin: Duration(seconds: 120), end: Duration.zero),
+                      onEnd: () {
+                        // print('Timer ended');
+                      },
+                      builder: (BuildContext context, Duration value,
+                          Widget? child) {
+                        final seconds = value.inSeconds % 120;
+                        return Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 5),
+                          child: Text(
+                            '$seconds\s',
+                            textAlign: TextAlign.center,
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleMedium
+                                ?.copyWith(color: AppColor.primaryColor),
+                          ),
+                        );
+                      }),
+                ],
               ),
+
+              // RichText(
+              //   text: TextSpan(
+              //     children: [
+              //       TextSpan(
+              //         text: 'This code will expire in ',
+              //         style: Theme.of(context)
+              //             .textTheme
+              //             .titleMedium
+              //             ?.copyWith(color: Colors.grey),
+              //       ),
+              //       TextSpan(
+              //         text: '$endTime',
+              //         style: Theme.of(context)
+              //             .textTheme
+              //             .titleMedium
+              //             ?.copyWith(color: AppColor.primaryColor),
+              //       ),
+              //     ],
+              //   ),
+              // ),
+              // TweenAnimationBuilder<Duration>(
+              //     duration: Duration(seconds: 120),
+              //     tween:
+              //         Tween(begin: Duration(seconds: 120), end: Duration.zero),
+              //     onEnd: () {
+              //       // print('Timer ended');
+              //     },
+              //     builder:
+              //         (BuildContext context, Duration value, Widget? child) {
+              //       final seconds = value.inSeconds % 120;
+              //       return Padding(
+              //           padding: const EdgeInsets.symmetric(vertical: 5),
+              //           child: Text('$seconds',
+              //               textAlign: TextAlign.center,
+              //               style: TextStyle(
+              //                   color: Colors.black,
+              //                   fontWeight: FontWeight.bold,
+              //                   fontSize: 30)));
+              //     }),
+
               TextButton(
                 onPressed: () {},
                 child: Text(
