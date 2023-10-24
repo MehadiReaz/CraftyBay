@@ -1,3 +1,4 @@
+import 'package:e_commerce_app/presentation/ui/screens/categories_scree.dart';
 import 'package:e_commerce_app/presentation/ui/utility/app_colors.dart';
 import 'package:e_commerce_app/presentation/ui/utility/image_assets.dart';
 import 'package:e_commerce_app/presentation/ui/widgets/circular_icon_button.dart';
@@ -5,7 +6,7 @@ import 'package:e_commerce_app/presentation/ui/widgets/home/home_carousal_slider
 import 'package:e_commerce_app/presentation/ui/widgets/home/section_header.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-
+import 'package:get/get.dart';
 import '../widgets/product_card.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -84,7 +85,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 height: 12,
               ),
               HomeCarousalSlider(),
-              SectionHeader(title: 'All Categories', onTap: () {}),
+              SectionHeader(
+                  title: 'All Categories',
+                  onTap: () => Get.to(CategoriesScreen())),
               SizedBox(
                 height: 90,
                 child: ListView.builder(
