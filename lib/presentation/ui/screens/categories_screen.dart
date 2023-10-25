@@ -1,5 +1,7 @@
+import 'package:e_commerce_app/presentation/state_holder/main_bottom_nav_controller.dart';
 import 'package:e_commerce_app/presentation/ui/widgets/category_card.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class CategoriesScreen extends StatelessWidget {
   const CategoriesScreen({super.key});
@@ -8,26 +10,39 @@ class CategoriesScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          backgroundColor: Colors.white,
-          title: Text(
-            'Categories',
-            style: TextStyle(color: Colors.black),
-          ),
-          elevation: 1,
-          leading: BackButton(
+        backgroundColor: Colors.white,
+        title: Text(
+          'Categories',
+          style: TextStyle(color: Colors.black),
+        ),
+        elevation: 1,
+        leading: IconButton(
+          onPressed: () {
+            Get.find<MainBottomNavController>().backToHomeScreen();
+          },
+          icon: Icon(
+            Icons.arrow_back_ios_new,
             color: Colors.black,
-          )),
-      body: SafeArea(
-        child: GridView.builder(
-            padding: EdgeInsets.all(16),
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisSpacing: 16,
-              mainAxisSpacing: 16,
-              crossAxisCount: 4,
-            ),
-            itemBuilder: (context, index) {
-              return FittedBox(child: CategoryCard());
-            }),
+          ),
+        ),
+      ),
+      body: WillPopScope(
+        onWillPop: () async {
+          Get.find<MainBottomNavController>().backToHomeScreen();
+          return false;
+        },
+        child: SafeArea(
+          child: GridView.builder(
+              padding: EdgeInsets.all(16),
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisSpacing: 16,
+                mainAxisSpacing: 16,
+                crossAxisCount: 4,
+              ),
+              itemBuilder: (context, index) {
+                return FittedBox(child: CategoryCard());
+              }),
+        ),
       ),
     );
   }
