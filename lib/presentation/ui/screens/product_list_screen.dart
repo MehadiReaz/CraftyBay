@@ -1,8 +1,8 @@
 import 'package:e_commerce_app/presentation/ui/widgets/product_card.dart';
 import 'package:flutter/material.dart';
 
-class WishListScreen extends StatelessWidget {
-  const WishListScreen({super.key});
+class ProductListScreen extends StatelessWidget {
+  const ProductListScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +12,7 @@ class WishListScreen extends StatelessWidget {
         backgroundColor: Colors.white,
         leading: BackButton(color: Colors.black),
         title: Text(
-          'Wish List',
+          'Product List',
           style: TextStyle(color: Colors.black),
         ),
       ),

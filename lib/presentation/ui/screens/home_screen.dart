@@ -1,6 +1,8 @@
-import 'package:e_commerce_app/presentation/ui/screens/categories_scree.dart';
+import 'package:e_commerce_app/presentation/ui/screens/categories_screen.dart';
+import 'package:e_commerce_app/presentation/ui/screens/product_list_screen.dart';
 import 'package:e_commerce_app/presentation/ui/utility/app_colors.dart';
 import 'package:e_commerce_app/presentation/ui/utility/image_assets.dart';
+import 'package:e_commerce_app/presentation/ui/widgets/category_card.dart';
 import 'package:e_commerce_app/presentation/ui/widgets/circular_icon_button.dart';
 import 'package:e_commerce_app/presentation/ui/widgets/home/home_carousal_slider.dart';
 import 'package:e_commerce_app/presentation/ui/widgets/home/section_header.dart';
@@ -96,40 +98,18 @@ class _HomeScreenState extends State<HomeScreen> {
                     itemBuilder: (context, index) {
                       return Padding(
                         padding: EdgeInsets.symmetric(horizontal: 10),
-                        child: Column(
-                          children: [
-                            Container(
-                              margin: EdgeInsets.symmetric(horizontal: 8),
-                              padding: EdgeInsets.all(16),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                color: AppColor.primaryColor.withOpacity(0.12),
-                              ),
-                              child: Icon(
-                                Icons.tv_outlined,
-                                size: 32,
-                                color: AppColor.primaryColor,
-                              ),
-                            ),
-                            SizedBox(
-                              height: 5,
-                            ),
-                            const Text(
-                              'Electronics',
-                              style: TextStyle(
-                                  fontSize: 15,
-                                  color: AppColor.primaryColor,
-                                  letterSpacing: 0.4),
-                            ),
-                          ],
-                        ),
+                        child: CategoryCard(),
                       );
                     }),
               ),
               SizedBox(
                 height: 10,
               ),
-              SectionHeader(title: 'Popular', onTap: () {}),
+              SectionHeader(
+                  title: 'Popular',
+                  onTap: () {
+                    Get.to(ProductListScreen());
+                  }),
               SizedBox(
                 height: 195,
                 child: ListView.builder(
@@ -142,7 +122,11 @@ class _HomeScreenState extends State<HomeScreen> {
               SizedBox(
                 height: 10,
               ),
-              SectionHeader(title: 'Special', onTap: () {}),
+              SectionHeader(
+                  title: 'Special',
+                  onTap: () {
+                    Get.to(ProductListScreen());
+                  }),
               SizedBox(
                 height: 195,
                 child: ListView.builder(
@@ -155,7 +139,11 @@ class _HomeScreenState extends State<HomeScreen> {
               SizedBox(
                 height: 10,
               ),
-              SectionHeader(title: 'New', onTap: () {}),
+              SectionHeader(
+                  title: 'New',
+                  onTap: () {
+                    Get.to(ProductListScreen());
+                  }),
               SizedBox(
                 height: 195,
                 child: ListView.builder(

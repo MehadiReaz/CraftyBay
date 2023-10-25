@@ -1,10 +1,9 @@
 import 'package:e_commerce_app/presentation/ui/screens/cart_screen.dart';
-import 'package:e_commerce_app/presentation/ui/screens/categories_scree.dart';
+import 'package:e_commerce_app/presentation/ui/screens/categories_screen.dart';
 import 'package:e_commerce_app/presentation/ui/screens/home_screen.dart';
 import 'package:e_commerce_app/presentation/ui/screens/wish_list_screen.dart';
 import 'package:e_commerce_app/presentation/ui/utility/app_colors.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class MainBottomNavigationBar extends StatefulWidget {
   const MainBottomNavigationBar({super.key});
@@ -34,7 +33,9 @@ class _BottomNavigationBarState extends State<MainBottomNavigationBar> {
         },
         selectedItemColor: AppColor.primaryColor,
         unselectedItemColor: Colors.grey,
+        showUnselectedLabels: true,
         elevation: 5,
+        backgroundColor: Colors.grey,
         items: [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
           BottomNavigationBarItem(
@@ -42,7 +43,7 @@ class _BottomNavigationBarState extends State<MainBottomNavigationBar> {
           BottomNavigationBarItem(
               icon: Icon(Icons.shopping_cart), label: 'Cart'),
           BottomNavigationBarItem(
-              icon: Icon(Icons.favorite), label: 'Wishlist'),
+              icon: Icon(Icons.card_giftcard_outlined), label: 'Wishlist'),
         ],
       ),
     );
