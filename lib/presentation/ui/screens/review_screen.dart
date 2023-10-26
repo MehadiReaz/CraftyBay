@@ -1,3 +1,5 @@
+import 'package:e_commerce_app/presentation/state_holder/main_bottom_nav_controller.dart';
+import 'package:e_commerce_app/presentation/ui/screens/bottom_nav_bar.dart';
 import 'package:e_commerce_app/presentation/ui/screens/create_review_screen.dart';
 import 'package:e_commerce_app/presentation/ui/screens/product_details_screen.dart';
 import 'package:e_commerce_app/presentation/ui/utility/app_colors.dart';
@@ -20,7 +22,9 @@ class ReviewScreen extends StatelessWidget {
             ),
             leading: IconButton(
               onPressed: () {
-                Get.to(ProductDetailsScreen());
+                Get.to(
+                  MainBottomNavigationBar(),
+                );
               },
               icon: Icon(
                 Icons.arrow_back_ios_new,
