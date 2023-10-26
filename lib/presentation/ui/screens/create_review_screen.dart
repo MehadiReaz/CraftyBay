@@ -1,3 +1,4 @@
+import 'package:e_commerce_app/presentation/ui/screens/review_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -9,7 +10,9 @@ class CreateReviewScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Get.to(ReviewScreen());
+            },
             icon: Icon(
               Icons.arrow_back_ios,
               color: Colors.black,

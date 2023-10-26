@@ -1,5 +1,7 @@
+import 'package:e_commerce_app/presentation/ui/screens/home_screen.dart';
 import 'package:e_commerce_app/presentation/ui/widgets/product_image_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class ProductDetailsScreen extends StatelessWidget {
   const ProductDetailsScreen({super.key});
@@ -16,7 +18,14 @@ class ProductDetailsScreen extends StatelessWidget {
                 AppBar(
                   elevation: 0,
                   backgroundColor: Colors.transparent,
-                  leading: BackButton(color: Colors.black54),
+                  leading: IconButton(
+                    onPressed: () {
+                      Get.to(
+                        HomeScreen(),
+                      );
+                    },
+                    icon: Icon(Icons.arrow_back_ios_new, color: Colors.black54),
+                  ),
                   title: Text(
                     'Product Details',
                     style: TextStyle(color: Colors.black54),
