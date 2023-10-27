@@ -3,6 +3,7 @@ import 'package:e_commerce_app/presentation/ui/screens/review_screen.dart';
 import 'package:e_commerce_app/presentation/ui/utility/app_colors.dart';
 import 'package:e_commerce_app/presentation/ui/widgets/custom_stepper.dart';
 import 'package:e_commerce_app/presentation/ui/widgets/product_image_slider.dart';
+import 'package:e_commerce_app/presentation/ui/widgets/siez_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -30,7 +31,6 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
   ];
 
   int _selectedColorIndex = 0;
-  int _selectedSizesIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -205,36 +205,13 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                           ),
                           Container(
                             height: 30,
-                            child: ListView.builder(
-                                scrollDirection: Axis.horizontal,
-                                itemCount: sizes.length,
-                                itemBuilder: (context, index) {
-                                  return InkWell(
-                                      onTap: () {
-                                        _selectedSizesIndex = index;
-                                        setState(() {});
-                                      },
-                                      child: Container(
-                                        decoration: BoxDecoration(
-                                          shape: BoxShape.circle,
-                                          border: Border.all(
-                                            color: Colors.black, // Border color
-                                          ),
-                                        ),
-                                        child: CircleAvatar(
-                                          backgroundColor:
-                                              _selectedSizesIndex == index
-                                                  ? AppColor.primaryColor
-                                                  : Colors.white,
-                                          child: Text(
-                                            sizes[index],
-                                            style: TextStyle(
-                                              color: Colors.black,
-                                            ),
-                                          ),
-                                        ),
-                                      ));
-                                }),
+                            /////
+                            child: SizePicker(
+                                sizes: sizes,
+                                onSelected: (int selectedSize) {
+                                  _selectedColorIndex = selectedSize;
+                                },
+                                initialSelected: 0),
                           ),
                           Text(
                             'Description',
