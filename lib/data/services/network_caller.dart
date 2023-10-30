@@ -14,7 +14,8 @@ class NetworkCaller {
         Uri.parse(url),
         // headers: {'token': AuthUtility.userInfo.token.toString()}
       );
-      if (response.statusCode == 200) {
+      if (response.statusCode == 200 &&
+          jsonDecode(response.body)['msg'] == ('success')) {
         return NetworkResponse(
             statusCode: response.statusCode,
             responseJson: jsonDecode(response.body),
