@@ -89,6 +89,14 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               GetBuilder<HomeSliderController>(
                 builder: (homeSliderController) {
+                  if (homeSliderController.homeSliderInProgress) {
+                    SizedBox(
+                      height: 180,
+                      child: Center(
+                        child: CircularProgressIndicator(),
+                      ),
+                    );
+                  }
                   return HomeCarousalSlider(
                     slider: homeSliderController.sliderModel.data ?? [],
                   );

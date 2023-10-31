@@ -2,7 +2,6 @@ import 'dart:convert';
 import 'dart:math';
 
 import 'package:e_commerce_app/data/models/network_response.dart';
-import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 
 class NetworkCaller {

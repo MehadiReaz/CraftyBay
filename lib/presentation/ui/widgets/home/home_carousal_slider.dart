@@ -19,6 +19,7 @@ class _HomeCarousalSliderState extends State<HomeCarousalSlider> {
       children: [
         CarouselSlider(
           options: CarouselOptions(
+            viewportFraction: 1,
             onPageChanged: (int page, _) {
               selectedSlider.value = page;
             },
