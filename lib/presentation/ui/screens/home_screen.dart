@@ -1,3 +1,4 @@
+import 'package:e_commerce_app/presentation/state_holder/home_slider_controller.dart';
 import 'package:e_commerce_app/presentation/state_holder/main_bottom_nav_controller.dart';
 import 'package:e_commerce_app/presentation/ui/screens/product_list_screen.dart';
 import 'package:e_commerce_app/presentation/ui/utility/app_colors.dart';
@@ -86,7 +87,13 @@ class _HomeScreenState extends State<HomeScreen> {
               SizedBox(
                 height: 12,
               ),
-              HomeCarousalSlider(),
+              GetBuilder<HomeSliderController>(
+                builder: (homeSliderController) {
+                  return HomeCarousalSlider(
+                    slider: homeSliderController.sliderModel.data ?? [],
+                  );
+                },
+              ),
               SectionHeader(
                   title: 'All Categories',
                   onTap: () {

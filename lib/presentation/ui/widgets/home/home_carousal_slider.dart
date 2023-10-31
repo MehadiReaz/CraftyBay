@@ -1,9 +1,11 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:e_commerce_app/data/models/slider_data.dart';
 import 'package:e_commerce_app/presentation/ui/utility/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class HomeCarousalSlider extends StatefulWidget {
-  const HomeCarousalSlider({super.key});
+  final List<SliderData> slider;
+  const HomeCarousalSlider({super.key, required this.slider});
 
   @override
   State<HomeCarousalSlider> createState() => _HomeCarousalSliderState();
@@ -24,17 +26,19 @@ class _HomeCarousalSliderState extends State<HomeCarousalSlider> {
             autoPlay: true,
             autoPlayInterval: Duration(seconds: 3),
           ),
-          items: [1, 2, 3, 4, 5].map((i) {
+          items: widget.slider.map((sliderData) {
             return Builder(
               builder: (BuildContext context) {
                 return Container(
-                    width: double.infinity,
-                    //margin: EdgeInsets.symmetric(horizontal: 5.0),
-                    decoration: BoxDecoration(color: Colors.amber),
-                    child: Text(
-                      'text $i',
-                      style: TextStyle(fontSize: 16.0),
-                    ));
+                  width: double.infinity,
+                  //margin: EdgeInsets.symmetric(horizontal: 5.0),
+                  decoration: BoxDecoration(color: AppColor.primaryColor),
+                  child: Column(
+                    children: [
+                      Image.network(sliderData.image ?? ''),
+                    ],
+                  ),
+                );
               },
             );
           }).toList(),
@@ -46,7 +50,7 @@ class _HomeCarousalSliderState extends State<HomeCarousalSlider> {
             valueListenable: selectedSlider,
             builder: (context, value, _) {
               List<Widget> list = [];
-              for (int i = 0; i < 5; i++) {
+              for (int i = 0; i < widget.slider.length; i++) {
                 list.add(
                   Container(
                     width: 10,
