@@ -1,3 +1,4 @@
+import 'package:e_commerce_app/presentation/state_holder/category_controller.dart';
 import 'package:e_commerce_app/presentation/state_holder/home_slider_controller.dart';
 import 'package:e_commerce_app/presentation/state_holder/main_bottom_nav_controller.dart';
 import 'package:e_commerce_app/presentation/ui/screens/product_list_screen.dart';
@@ -13,8 +14,9 @@ import 'package:get/get.dart';
 import '../widgets/product_card.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
-
+  const HomeScreen({
+    super.key,
+  });
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
@@ -109,15 +111,28 @@ class _HomeScreenState extends State<HomeScreen> {
                   }),
               SizedBox(
                 height: 90,
-                child: ListView.builder(
-                    itemCount: 10,
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (context, index) {
-                      return Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 10),
-                        child: CategoryCard(),
+                child: GetBuilder<CategoryController>(
+                  builder: (categoryController) {
+                    if (categoryController.categoryListInProgress) {
+                      Center(
+                        child: CircularProgressIndicator(),
                       );
-                    }),
+                    }
+                    return ListView.builder(
+                        itemCount:
+                            categoryController.categoryModel.data?.length ?? 0,
+                        scrollDirection: Axis.horizontal,
+                        itemBuilder: (context, index) {
+                          return Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 10),
+                            child: CategoryCard(
+                              categoryData:
+                                  categoryController.categoryModel.data![index],
+                            ),
+                          );
+                        });
+                  },
+                ),
               ),
               SizedBox(
                 height: 10,

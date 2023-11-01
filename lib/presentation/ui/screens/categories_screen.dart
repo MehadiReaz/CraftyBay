@@ -1,3 +1,4 @@
+import 'package:e_commerce_app/presentation/state_holder/category_controller.dart';
 import 'package:e_commerce_app/presentation/state_holder/main_bottom_nav_controller.dart';
 import 'package:e_commerce_app/presentation/ui/widgets/category_card.dart';
 import 'package:flutter/material.dart';
@@ -32,16 +33,29 @@ class CategoriesScreen extends StatelessWidget {
           return false;
         },
         child: SafeArea(
-          child: GridView.builder(
-              padding: EdgeInsets.all(16),
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisSpacing: 16,
-                mainAxisSpacing: 16,
-                crossAxisCount: 4,
-              ),
-              itemBuilder: (context, index) {
-                return FittedBox(child: CategoryCard());
-              }),
+          child: Padding(
+            padding: EdgeInsets.all(16),
+            child: GetBuilder<CategoryController>(
+              builder: (categoryController) {
+                return GridView.builder(
+                    itemCount:
+                        categoryController.categoryModel.data?.length ?? 0,
+                    padding: EdgeInsets.all(16),
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisSpacing: 16,
+                      mainAxisSpacing: 16,
+                      crossAxisCount: 4,
+                    ),
+                    itemBuilder: (context, index) {
+                      return FittedBox(
+                        child: CategoryCard(
+                            categoryData:
+                                categoryController.categoryModel.data![index]),
+                      );
+                    });
+              },
+            ),
+          ),
         ),
       ),
     );
