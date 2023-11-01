@@ -1,4 +1,4 @@
-import 'package:e_commerce_app/presentation/state_holder/auth_controller.dart';
+import 'package:e_commerce_app/presentation/state_holder/auth/auth_controller.dart';
 import 'package:e_commerce_app/presentation/ui/screens/auth/email_verification_screen.dart';
 import 'package:e_commerce_app/presentation/ui/screens/bottom_nav_bar.dart';
 import 'package:e_commerce_app/presentation/ui/utility/image_assets.dart';

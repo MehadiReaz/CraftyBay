@@ -38,9 +38,9 @@ class ProductListScreen extends StatelessWidget {
                 crossAxisCount: 3,
               ),
               itemBuilder: (context, index) {
-                // return FittedBox(
-                //   child: ProductCard(),
-                // );
+                return FittedBox(
+                    // child: ProductCard(product: ),
+                    );
               }),
         ),
       ),

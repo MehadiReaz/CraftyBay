@@ -1,4 +1,4 @@
-import 'package:e_commerce_app/presentation/state_holder/email_verification_controller.dart';
+import 'package:e_commerce_app/presentation/state_holder/auth/email_verification_controller.dart';
 import 'package:e_commerce_app/presentation/ui/screens/auth/otp_verification_screen.dart';
 import 'package:e_commerce_app/presentation/ui/utility/image_assets.dart';
 import 'package:flutter/material.dart';
