@@ -5,4 +5,6 @@ class urls {
       '$_baseUrl/VerifyLogin/$email/$otp';
   static String listProductSlider = '$_baseUrl/ListProductSlider';
   static String categoryList = '$_baseUrl/CategoryList';
+  static String getProductsByRemark(String remarks) =>
+      '$_baseUrl/ListProductByRemark/$remarks';
 }

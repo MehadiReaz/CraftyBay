@@ -1,5 +1,4 @@
 import 'package:e_commerce_app/application/state_holder_binder.dart';
-import 'package:e_commerce_app/presentation/state_holder/main_bottom_nav_controller.dart';
 import 'package:e_commerce_app/presentation/ui/screens/splash_screen.dart';
 import 'package:e_commerce_app/presentation/ui/utility/app_colors.dart';
 import 'package:flutter/material.dart';

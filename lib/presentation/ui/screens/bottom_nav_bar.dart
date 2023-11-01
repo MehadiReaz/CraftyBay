@@ -1,6 +1,7 @@
 import 'package:e_commerce_app/presentation/state_holder/category_controller.dart';
 import 'package:e_commerce_app/presentation/state_holder/home_slider_controller.dart';
 import 'package:e_commerce_app/presentation/state_holder/main_bottom_nav_controller.dart';
+import 'package:e_commerce_app/presentation/state_holder/popular_product_contoller.dart';
 import 'package:e_commerce_app/presentation/ui/screens/cart_screen.dart';
 import 'package:e_commerce_app/presentation/ui/screens/categories_screen.dart';
 import 'package:e_commerce_app/presentation/ui/screens/home_screen.dart';
@@ -31,6 +32,7 @@ class _BottomNavigationBarState extends State<MainBottomNavigationBar> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       Get.find<HomeSliderController>().getHomeSlider();
       Get.find<CategoryController>().getcategoryList();
+      Get.find<ProductController>().getPopularProducts();
     });
   }
 

@@ -1,15 +1,15 @@
+import 'package:e_commerce_app/data/models/product.dart';
 import 'package:e_commerce_app/presentation/ui/screens/product_details_screen.dart';
 import 'package:e_commerce_app/presentation/ui/utility/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../utility/image_assets.dart';
-
 class ProductCard extends StatelessWidget {
   const ProductCard({
     super.key,
+    required this.product,
   });
-
+  final Product product;
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -26,17 +26,19 @@ class ProductCard extends StatelessWidget {
               Container(
                 height: 130,
                 decoration: BoxDecoration(
-                    color: AppColor.primaryColor.withOpacity(0.1),
-                    image: DecorationImage(
-                        image: AssetImage(ImageAssets.craftyBayShoePNG))),
+                  color: AppColor.primaryColor.withOpacity(0.1),
+                  image: DecorationImage(
+                    image: NetworkImage(product.image ?? ''),
+                  ),
+                ),
               ),
               SizedBox(
-                height: 5,
+                height: 3,
               ),
               Text(
-                'Nike Shoe',
+                product.title ?? '',
                 maxLines: 1,
-                overflow: TextOverflow.fade,
+                overflow: TextOverflow.ellipsis,
                 style: TextStyle(
                   color: Colors.blueGrey,
                   letterSpacing: 0.45,
@@ -44,13 +46,16 @@ class ProductCard extends StatelessWidget {
                   fontWeight: FontWeight.w500,
                 ),
               ),
+              SizedBox(
+                height: 3,
+              ),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 8),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      '\$900',
+                      '\$${product.price}',
                       style: TextStyle(
                         color: AppColor.primaryColor,
                         letterSpacing: 0.45,
@@ -66,7 +71,7 @@ class ProductCard extends StatelessWidget {
                           size: 15,
                         ),
                         Text(
-                          '4.8',
+                          '${product.star ?? 0}',
                           style: TextStyle(
                             color: Colors.blueGrey,
                             letterSpacing: 0.45,
