@@ -38,7 +38,6 @@ class _SiezPickerState extends State<SizePicker> {
               },
               child: Container(
                 decoration: BoxDecoration(
-                  shape: BoxShape.circle,
                   border: Border.all(
                     color: Colors.black,
                   ),

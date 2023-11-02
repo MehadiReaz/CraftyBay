@@ -1,3 +1,4 @@
+import 'package:e_commerce_app/presentation/state_holder/product_details_controller.dart';
 import 'package:e_commerce_app/presentation/state_holder/category_controller.dart';
 import 'package:e_commerce_app/presentation/state_holder/auth/email_verification_controller.dart';
 import 'package:e_commerce_app/presentation/state_holder/home_slider_controller.dart';
@@ -19,5 +20,6 @@ class StateHolderBinder extends Bindings {
     Get.put(PopularProductController());
     Get.put(SpecialProductController());
     Get.put(NewProductController());
+    Get.put(ProductDetailsController());
   }
 }

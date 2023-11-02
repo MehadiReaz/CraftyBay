@@ -1,6 +1,9 @@
+import 'package:e_commerce_app/data/models/product_details.dart';
+import 'package:e_commerce_app/presentation/state_holder/product_details_controller.dart';
 import 'package:e_commerce_app/presentation/ui/screens/bottom_nav_bar.dart';
 import 'package:e_commerce_app/presentation/ui/screens/review_screen.dart';
 import 'package:e_commerce_app/presentation/ui/utility/app_colors.dart';
+import 'package:e_commerce_app/presentation/ui/utility/color_extention.dart';
 import 'package:e_commerce_app/presentation/ui/widgets/color_picker.dart';
 import 'package:e_commerce_app/presentation/ui/widgets/custom_stepper.dart';
 import 'package:e_commerce_app/presentation/ui/widgets/product_image_slider.dart';
@@ -9,20 +12,15 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class ProductDetailsScreen extends StatefulWidget {
-  ProductDetailsScreen({super.key});
+  ProductDetailsScreen({super.key, required this.productId});
+  final int productId;
 
   @override
   State<ProductDetailsScreen> createState() => _ProductDetailsScreenState();
 }
 
 class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
-  final List<Color> colors = [
-    Colors.black,
-    AppColor.primaryColor,
-    Colors.brown,
-    Colors.grey,
-    Colors.teal,
-  ];
+  final List<String> colors = [];
 
   final List<String> sizes = [
     'S',
@@ -35,31 +33,54 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
   int _selectedSizeIndex = 0;
 
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Get.find<ProductDetailsController>().getProductDetails(widget.productId);
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Stack(
+      body: GetBuilder<ProductDetailsController>(
+        builder: (productDetailsController) {
+          return SafeArea(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                ProductImageSlider(),
-                productDetailsAppBar,
+                Stack(
+                  children: [
+                    ProductImageSlider(
+                      imageList: [
+                        productDetailsController.productDetails.img1 ?? '',
+                        productDetailsController.productDetails.img2 ?? '',
+                        productDetailsController.productDetails.img3 ?? '',
+                        productDetailsController.productDetails.img4 ?? '',
+                      ],
+                    ),
+                    productDetailsAppBar(
+                        productDetailsController.productDetails),
+                  ],
+                ),
+                Expanded(
+                  child: SingleChildScrollView(
+                    child: productDetailsBody(
+                        productDetailsController.productDetails),
+                  ),
+                ),
+                productDetailsBottomBar(
+                    productDetailsController.productDetails),
               ],
             ),
-            Expanded(
-              child: SingleChildScrollView(
-                child: productDetailsBody,
-              ),
-            ),
-            productDetailsBottomBar,
-          ],
-        ),
+          );
+        },
       ),
     );
   }
 
-  Column get productDetailsBody {
+  Column productDetailsBody(ProductDetails productDetails) {
     return Column(
       children: [
         Padding(
@@ -71,7 +92,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Adidas show fdsfsdfsd -fdsff ',
+                    productDetails.product!.title ?? '',
                     style: TextStyle(
                       overflow: TextOverflow.fade,
                       fontSize: 16,
@@ -80,7 +101,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                     ),
                   ),
                   Text(
-                    'Save 30%',
+                    'Save ${productDetails.product?.discount ?? ''}%',
                     style: TextStyle(
                       overflow: TextOverflow.fade,
                       fontSize: 18,
@@ -111,7 +132,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                     size: 25,
                   ),
                   Text(
-                    '4.8',
+                    '${productDetails.product?.star}',
                     style: TextStyle(
                       color: Colors.blueGrey,
                       letterSpacing: 0.45,
@@ -164,23 +185,25 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
               ProductDetailsScreenTitleTextWidget(
                 titleText: 'Color',
               ),
-              Container(
-                height: 30,
-                child: ColorPicker(
-                  initialSelected: 0,
-                  colors: colors,
-                  onSelected: (selectedIndex) {
-                    _selectedColorIndex = selectedIndex;
-                  },
-                ),
-              ),
+              // Container(
+              //   height: 30,
+              //   child: ColorPicker(
+              //     totalColor: productDetails.color?.split(',').length ?? 0,
+              //     initialSelected: 0,
+
+              //     colors: Color,
+              //     onSelected: (selectedIndex) {
+              //       _selectedColorIndex = selectedIndex;
+              //     },
+              //   ),
+              // ),
               ProductDetailsScreenTitleTextWidget(
                 titleText: 'Size',
               ),
               Container(
                 height: 30,
                 child: SizePicker(
-                    sizes: sizes,
+                    sizes: productDetails.size?.split(',') ?? [],
                     onSelected: (int selectedSize) {
                       _selectedSizeIndex = selectedSize;
                     },
@@ -190,7 +213,8 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                 titleText: 'Description',
               ),
               Text(
-                'Reprehenderit Lorem culpa ipsum cupidatat. Do sunt consequat id laboris adipisicing deserunt officia non in sint laborum ad. Et eu irure fugiat dolore dolore in laboris voluptate ex ea nostrud. Excepteur officia labore proident est commodo in eiusmod commodo elit sunt magna velit.Reprehenderit Lorem culpa ipsum cupidatat. Do sunt consequat id laboris adipisicing deserunt officia non in sint laborum ad. Et eu irure fugiat dolore dolore in laboris voluptate ex ea nostrud. Excepteur officia labore proident est commodo in eiusmod commodo elit sunt magna velit.',
+                '${productDetails.des}',
+                textAlign: TextAlign.justify,
                 style: TextStyle(
                   fontSize: 16,
                   color: Colors.black45,
@@ -204,7 +228,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
     );
   }
 
-  AppBar get productDetailsAppBar {
+  AppBar productDetailsAppBar(ProductDetails productDetails) {
     return AppBar(
       elevation: 0,
       backgroundColor: Colors.transparent,
@@ -223,7 +247,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
     );
   }
 
-  Container get productDetailsBottomBar {
+  Container productDetailsBottomBar(ProductDetails productDetails) {
     return Container(
       height: 70,
       // width: double.infinity,
@@ -253,7 +277,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                 height: 3,
               ),
               Text(
-                '\$1000',
+                '\$${productDetails.product?.price}',
                 style: TextStyle(
                     color: AppColor.primaryColor,
                     fontSize: 16,
@@ -275,6 +299,13 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
         ],
       ),
     );
+  }
+
+  void convertStringToColor(String color) {
+    final List<String> splitedColors = color.split(',');
+    for (String c in splitedColors) {
+      colors.add(c);
+    }
   }
 }
 

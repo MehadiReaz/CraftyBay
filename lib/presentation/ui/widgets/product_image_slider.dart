@@ -3,8 +3,8 @@ import 'package:e_commerce_app/presentation/ui/utility/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class ProductImageSlider extends StatefulWidget {
-  const ProductImageSlider({super.key});
-
+  ProductImageSlider({super.key, required this.imageList});
+  final List<String> imageList;
   @override
   State<ProductImageSlider> createState() => _ProductImageSliderState();
 }
@@ -25,17 +25,19 @@ class _ProductImageSliderState extends State<ProductImageSlider> {
             autoPlay: true,
             autoPlayInterval: Duration(seconds: 3),
           ),
-          items: [1, 2, 3, 4, 5].map((i) {
+          items: widget.imageList.map((imageUrl) {
             return Builder(
               builder: (BuildContext context) {
                 return Container(
-                    width: double.infinity,
-                    //margin: EdgeInsets.symmetric(horizontal: 5.0),
-                    decoration: BoxDecoration(color: Colors.grey.shade400),
-                    child: Text(
-                      'text $i',
-                      style: TextStyle(fontSize: 16.0),
-                    ));
+                  width: double.infinity,
+                  //margin: EdgeInsets.symmetric(horizontal: 5.0),
+                  decoration: BoxDecoration(
+                    color: Colors.grey.shade400,
+                    image: DecorationImage(
+                      image: NetworkImage(imageUrl),
+                    ),
+                  ),
+                );
               },
             );
           }).toList(),
@@ -51,7 +53,7 @@ class _ProductImageSliderState extends State<ProductImageSlider> {
               valueListenable: selectedSlider,
               builder: (context, value, _) {
                 List<Widget> list = [];
-                for (int i = 0; i < 5; i++) {
+                for (int i = 0; i < widget.imageList.length; i++) {
                   list.add(
                     Container(
                       width: 10,

@@ -5,10 +5,12 @@ class ColorPicker extends StatefulWidget {
       {super.key,
       required this.colors,
       required this.onSelected,
-      required this.initialSelected});
+      required this.initialSelected,
+      required this.totalColor});
   final List<Color> colors;
   final Function(int selectedIndex) onSelected;
   final int initialSelected;
+  final int totalColor;
   @override
   State<ColorPicker> createState() => _ColorPickerState();
 }
@@ -27,7 +29,7 @@ class _ColorPickerState extends State<ColorPicker> {
   Widget build(BuildContext context) {
     return ListView.builder(
         scrollDirection: Axis.horizontal,
-        itemCount: widget.colors.length,
+        itemCount: widget.totalColor,
         itemBuilder: (context, index) {
           return InkWell(
             onTap: () {
