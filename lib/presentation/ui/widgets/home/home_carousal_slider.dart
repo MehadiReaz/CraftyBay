@@ -36,7 +36,11 @@ class _HomeCarousalSliderState extends State<HomeCarousalSlider> {
                   decoration: BoxDecoration(color: AppColor.primaryColor),
                   child: Column(
                     children: [
-                      Image.network(sliderData.image ?? ''),
+                      Image.network(
+                        sliderData.image ?? '',
+                        fit: BoxFit.fill,
+                        height: 180,
+                      ),
                     ],
                   ),
                 );

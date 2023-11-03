@@ -7,5 +7,11 @@ class urls {
   static String categoryList = '$_baseUrl/CategoryList';
   static String getProductsByRemark(String remarks) =>
       '$_baseUrl/ListProductByRemark/$remarks';
+
+  // static String getProductsNew = '$_baseUrl/ListProductByRemark/new';
+  // static String getProductsPopular = '$_baseUrl/ListProductByRemark/popular';
+  // static String getProductsSpecial = '$_baseUrl/ListProductByRemark/special';
+
   static String getProductDetails(int id) => '$_baseUrl/ProductDetailsById/$id';
+  static String addToCart = '$_baseUrl/CreateCartList';
 }

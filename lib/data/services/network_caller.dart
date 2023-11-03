@@ -1,7 +1,11 @@
 import 'dart:convert';
 import 'dart:math';
 
+import 'package:e_commerce_app/application/app.dart';
 import 'package:e_commerce_app/data/models/network_response.dart';
+import 'package:e_commerce_app/presentation/state_holder/auth/auth_controller.dart';
+import 'package:e_commerce_app/presentation/ui/screens/auth/email_verification_screen.dart';
+import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 
 class NetworkCaller {
@@ -38,7 +42,7 @@ class NetworkCaller {
       Response response = await post(Uri.parse(url),
           headers: {
             'content-type': 'application/json',
-            // 'token': AuthUtility.userInfo.token.toString()
+            'token': AuthController.accessToken.toString()
           },
           body: jsonEncode(body));
 
@@ -64,10 +68,10 @@ class NetworkCaller {
   }
 
   void goToLogin() {
-    // AuthUtility.clearUserInfo();
-    // Navigator.pushAndRemoveUntil(
-    //     TaskManagerApp.globalKey.currentContext!,
-    //     MaterialPageRoute(builder: (context) => LoginScreen()),
-    //     (route) => false);
+    AuthController.clear();
+    Navigator.pushAndRemoveUntil(
+        CraftyBay.globalKey.currentContext!,
+        MaterialPageRoute(builder: (context) => EmailVerificationScreen()),
+        (route) => false);
   }
 }

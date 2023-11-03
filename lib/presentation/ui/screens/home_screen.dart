@@ -28,67 +28,14 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0,
-        title: Row(
-          children: [
-            SvgPicture.asset(
-              ImageAssets.craftyBayLogoNavSVG,
-              // width: 50,
-            ),
-            Spacer(),
-            CircularIconButton(
-              icon: Icons.person_2_outlined,
-              onTap: () {},
-            ),
-            SizedBox(
-              width: 10,
-            ),
-            CircularIconButton(
-              icon: Icons.call_outlined,
-              onTap: () {},
-            ),
-            SizedBox(
-              width: 10,
-            ),
-            CircularIconButton(
-              icon: Icons.notifications_active_outlined,
-              onTap: () {},
-            ),
-          ],
-        ),
-      ),
+      appBar: homeScreenAppBar,
       body: SafeArea(
           child: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.all(16),
           child: Column(
             children: [
-              TextField(
-                decoration: InputDecoration(
-                  filled: true,
-                  fillColor: Colors.grey.shade300,
-                  // focusColor: Colors.grey.shade500,
-                  prefixIcon: Icon(
-                    Icons.search,
-                    color: AppColor.primaryColor,
-                  ),
-                  border: OutlineInputBorder(
-                    borderSide: BorderSide.none,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide.none,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide.none,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  hintText: 'Search',
-                ),
-              ),
+              homeScreenSearchTextField,
               SizedBox(
                 height: 12,
               ),
@@ -98,7 +45,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     SizedBox(
                       height: 180,
                       child: Center(
-                        child: CircularProgressIndicator(),
+                        child: CircularProgressIndicator(
+                          color: Colors.amber,
+                        ),
                       ),
                     );
                   }
@@ -112,31 +61,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   onTap: () {
                     Get.find<MainBottomNavController>().changeScreen(1);
                   }),
-              SizedBox(
-                height: 90,
-                child: GetBuilder<CategoryController>(
-                  builder: (categoryController) {
-                    if (categoryController.categoryListInProgress) {
-                      Center(
-                        child: CircularProgressIndicator(),
-                      );
-                    }
-                    return ListView.builder(
-                        itemCount:
-                            categoryController.categoryModel.data?.length ?? 0,
-                        scrollDirection: Axis.horizontal,
-                        itemBuilder: (context, index) {
-                          return Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 10),
-                            child: CategoryCard(
-                              categoryData:
-                                  categoryController.categoryModel.data![index],
-                            ),
-                          );
-                        });
-                  },
-                ),
-              ),
+              homeScreenAllCategories,
               SizedBox(
                 height: 10,
               ),
@@ -219,6 +144,93 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
       )),
+    );
+  }
+
+  TextField get homeScreenSearchTextField {
+    return TextField(
+      decoration: InputDecoration(
+        filled: true,
+        fillColor: Colors.grey.shade300,
+        // focusColor: Colors.grey.shade500,
+        prefixIcon: Icon(
+          Icons.search,
+          color: AppColor.primaryColor,
+        ),
+        border: OutlineInputBorder(
+          borderSide: BorderSide.none,
+          borderRadius: BorderRadius.circular(10),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide.none,
+          borderRadius: BorderRadius.circular(10),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderSide: BorderSide.none,
+          borderRadius: BorderRadius.circular(10),
+        ),
+        hintText: 'Search',
+      ),
+    );
+  }
+
+  AppBar get homeScreenAppBar {
+    return AppBar(
+      backgroundColor: Colors.white,
+      elevation: 0,
+      title: Row(
+        children: [
+          SvgPicture.asset(
+            ImageAssets.craftyBayLogoNavSVG,
+            // width: 50,
+          ),
+          Spacer(),
+          CircularIconButton(
+            icon: Icons.person_2_outlined,
+            onTap: () {},
+          ),
+          SizedBox(
+            width: 10,
+          ),
+          CircularIconButton(
+            icon: Icons.call_outlined,
+            onTap: () {},
+          ),
+          SizedBox(
+            width: 10,
+          ),
+          CircularIconButton(
+            icon: Icons.notifications_active_outlined,
+            onTap: () {},
+          ),
+        ],
+      ),
+    );
+  }
+
+  SizedBox get homeScreenAllCategories {
+    return SizedBox(
+      height: 90,
+      child: GetBuilder<CategoryController>(
+        builder: (categoryController) {
+          if (categoryController.categoryListInProgress) {
+            Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+          return ListView.builder(
+              itemCount: categoryController.categoryModel.data?.length ?? 0,
+              scrollDirection: Axis.horizontal,
+              itemBuilder: (context, index) {
+                return Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 10),
+                  child: CategoryCard(
+                    categoryData: categoryController.categoryModel.data![index],
+                  ),
+                );
+              });
+        },
+      ),
     );
   }
 }

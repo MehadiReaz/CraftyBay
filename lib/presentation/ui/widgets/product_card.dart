@@ -20,7 +20,7 @@ class ProductCard extends StatelessWidget {
         ));
       },
       child: SizedBox(
-        width: 150,
+        width: 155,
         //height: 196,
         child: Card(
           child: Column(

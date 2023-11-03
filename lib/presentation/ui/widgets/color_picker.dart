@@ -1,51 +1,73 @@
+import 'package:e_commerce_app/presentation/ui/utility/app_colors.dart';
 import 'package:flutter/material.dart';
 
-class ColorPicker extends StatefulWidget {
-  const ColorPicker(
+class ProductColorPicker extends StatefulWidget {
+  const ProductColorPicker(
       {super.key,
       required this.colors,
       required this.onSelected,
-      required this.initialSelected,
-      required this.totalColor});
-  final List<Color> colors;
-  final Function(int selectedIndex) onSelected;
+      required this.initialSelected});
+
+  final List<String> colors;
+  final Function(int selectIndex) onSelected;
   final int initialSelected;
-  final int totalColor;
+
   @override
-  State<ColorPicker> createState() => _ColorPickerState();
+  State<ProductColorPicker> createState() => _ProductColorPickerState();
 }
 
-int _selectedColorIndex = 0;
+class _ProductColorPickerState extends State<ProductColorPicker> {
+  int _selectedColorIndex = 0;
 
-class _ColorPickerState extends State<ColorPicker> {
   @override
   void initState() {
-    // TODO: implement initState
-    super.initState();
     _selectedColorIndex = widget.initialSelected;
+    super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-        scrollDirection: Axis.horizontal,
-        itemCount: widget.totalColor,
-        itemBuilder: (context, index) {
-          return InkWell(
-            onTap: () {
-              _selectedColorIndex = index;
-              setState(() {});
+    return Column(
+      children: [
+        const SizedBox(
+          height: 16,
+        ),
+        SizedBox(
+          height: 28,
+          child: ListView.separated(
+            scrollDirection: Axis.horizontal,
+            itemCount: widget.colors.length,
+            itemBuilder: (context, index) {
+              return InkWell(
+                borderRadius: BorderRadius.circular(4),
+                onTap: () {
+                  _selectedColorIndex = index;
+                  widget.onSelected(index);
+                  if (mounted) {
+                    setState(() {});
+                  }
+                },
+                child: Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 8),
+                  decoration: BoxDecoration(
+                      border: Border.all(color: Colors.grey),
+                      borderRadius: BorderRadius.circular(4),
+                      color: _selectedColorIndex == index
+                          ? AppColor.primaryColor
+                          : null),
+                  alignment: Alignment.center,
+                  child: Text(widget.colors[index]),
+                ),
+              );
             },
-            child: CircleAvatar(
-              backgroundColor: widget.colors[index],
-              child: _selectedColorIndex == index
-                  ? Icon(
-                      Icons.done,
-                      color: Colors.white,
-                    )
-                  : null,
-            ),
-          );
-        });
+            separatorBuilder: (BuildContext context, int index) {
+              return const SizedBox(
+                width: 8,
+              );
+            },
+          ),
+        ),
+      ],
+    );
   }
 }

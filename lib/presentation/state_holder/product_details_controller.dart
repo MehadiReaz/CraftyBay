@@ -10,11 +10,19 @@ class ProductDetailsController extends GetxController {
   ProductDetails _productDetails = ProductDetails();
   String _errorMessage = '';
 
+  List<String> _availableColors = [];
+
+  List<String> _availableSizes = [];
+
   bool get getProductDetailsInProgress => _getProductDetailsInProgress;
 
   ProductDetails get productDetails => _productDetails;
 
   String get errorMessage => _errorMessage;
+
+  List<String> get availableColors => _availableColors;
+
+  List<String> get availableSizes => _availableSizes;
 
   Future<bool> getProductDetails(int id) async {
     _getProductDetailsInProgress = true;
@@ -25,6 +33,8 @@ class ProductDetailsController extends GetxController {
     if (response.isSuccess) {
       _productDetails =
           ProductDetailsModel.fromJson(response.responseJson ?? {}).data!.first;
+      _convertStringToColor(_productDetails.color ?? '');
+      _convertStringToSizes(_productDetails.size ?? '');
       update();
       return true;
     } else {
@@ -32,5 +42,19 @@ class ProductDetailsController extends GetxController {
       update();
       return false;
     }
+  }
+
+  void _convertStringToColor(String color) {
+    _availableColors.clear();
+    final List<String> splittedColors = color.split(',');
+    for (String c in splittedColors) {
+      if (c.isNotEmpty) {
+        _availableColors.add(c);
+      }
+    }
+  }
+
+  void _convertStringToSizes(String sizes) {
+    _availableSizes = sizes.split(',');
   }
 }

@@ -1,9 +1,9 @@
 import 'package:e_commerce_app/data/models/product_details.dart';
+import 'package:e_commerce_app/presentation/state_holder/add_to_cart_controller.dart';
 import 'package:e_commerce_app/presentation/state_holder/product_details_controller.dart';
 import 'package:e_commerce_app/presentation/ui/screens/bottom_nav_bar.dart';
 import 'package:e_commerce_app/presentation/ui/screens/review_screen.dart';
 import 'package:e_commerce_app/presentation/ui/utility/app_colors.dart';
-import 'package:e_commerce_app/presentation/ui/utility/color_extention.dart';
 import 'package:e_commerce_app/presentation/ui/widgets/color_picker.dart';
 import 'package:e_commerce_app/presentation/ui/widgets/custom_stepper.dart';
 import 'package:e_commerce_app/presentation/ui/widgets/product_image_slider.dart';
@@ -20,17 +20,9 @@ class ProductDetailsScreen extends StatefulWidget {
 }
 
 class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
-  final List<String> colors = [];
-
-  final List<String> sizes = [
-    'S',
-    'M',
-    'X',
-    'XL',
-  ];
-
   int _selectedColorIndex = 0;
   int _selectedSizeIndex = 0;
+  int quantity = 1;
 
   @override
   void initState() {
@@ -177,52 +169,52 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
             ],
           ),
         ),
-        Padding(
-          padding: EdgeInsets.all(10),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              ProductDetailsScreenTitleTextWidget(
-                titleText: 'Color',
+        GetBuilder<ProductDetailsController>(
+          builder: (productDetailsController) {
+            return Padding(
+              padding: EdgeInsets.all(10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  ProductDetailsScreenTitleTextWidget(
+                    titleText: 'Color',
+                  ),
+                  Container(
+                      height: 50,
+                      child: ProductColorPicker(
+                          colors: productDetailsController.availableColors,
+                          onSelected: (int selectedColor) {
+                            _selectedColorIndex = selectedColor;
+                          },
+                          initialSelected: 0)),
+                  ProductDetailsScreenTitleTextWidget(
+                    titleText: 'Size',
+                  ),
+                  Container(
+                    height: 30,
+                    child: SizePicker(
+                        sizes: productDetailsController.availableSizes,
+                        onSelected: (int selectedSize) {
+                          _selectedSizeIndex = selectedSize;
+                        },
+                        initialSelected: 0),
+                  ),
+                  ProductDetailsScreenTitleTextWidget(
+                    titleText: 'Description',
+                  ),
+                  Text(
+                    '${productDetails.des}',
+                    textAlign: TextAlign.justify,
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.black45,
+                      letterSpacing: 0.4,
+                    ),
+                  ),
+                ],
               ),
-              // Container(
-              //   height: 30,
-              //   child: ColorPicker(
-              //     totalColor: productDetails.color?.split(',').length ?? 0,
-              //     initialSelected: 0,
-
-              //     colors: Color,
-              //     onSelected: (selectedIndex) {
-              //       _selectedColorIndex = selectedIndex;
-              //     },
-              //   ),
-              // ),
-              ProductDetailsScreenTitleTextWidget(
-                titleText: 'Size',
-              ),
-              Container(
-                height: 30,
-                child: SizePicker(
-                    sizes: productDetails.size?.split(',') ?? [],
-                    onSelected: (int selectedSize) {
-                      _selectedSizeIndex = selectedSize;
-                    },
-                    initialSelected: 0),
-              ),
-              ProductDetailsScreenTitleTextWidget(
-                titleText: 'Description',
-              ),
-              Text(
-                '${productDetails.des}',
-                textAlign: TextAlign.justify,
-                style: TextStyle(
-                  fontSize: 16,
-                  color: Colors.black45,
-                  letterSpacing: 0.4,
-                ),
-              ),
-            ],
-          ),
+            );
+          },
         ),
       ],
     );
@@ -286,12 +278,47 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
             ],
           ),
           Spacer(),
-          SizedBox(
-            width: 150,
-            child: ElevatedButton(
-              onPressed: () {},
-              child: Text('Add To Cart'),
-            ),
+          GetBuilder<ProductDetailsController>(
+            builder: (productDetailsController) {
+              return SizedBox(
+                width: 150,
+                child: GetBuilder<AddToCartController>(
+                  builder: (addToCartController) {
+                    return ElevatedButton(
+                      onPressed: () async {
+                        Get.find<AddToCartController>()
+                            .addToCart(
+                                productDetailsController
+                                        .productDetails.productId ??
+                                    0,
+                                productDetailsController
+                                    .availableColors[_selectedColorIndex],
+                                productDetailsController
+                                    .availableSizes[_selectedSizeIndex],
+                                1)
+                            .then((result) {
+                          if (result) {
+                            Get.snackbar('Success', 'Add to cart successful.',
+                                backgroundColor: Colors.green,
+                                colorText: Colors.white,
+                                borderRadius: 10,
+                                snackPosition: SnackPosition.BOTTOM);
+                          } else {
+                            Get.snackbar(
+                                'Failed', 'Add to cart failed! Try again.',
+                                backgroundColor: Colors.red,
+                                colorText: Colors.white,
+                                borderRadius: 10,
+                                snackPosition: SnackPosition.BOTTOM);
+                          }
+                        });
+                      },
+                      child: Text('Add To Cart'),
+                    );
+                  },
+                ),
+              );
+            },
           ),
           SizedBox(
             width: 20,
@@ -299,13 +326,6 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
         ],
       ),
     );
-  }
-
-  void convertStringToColor(String color) {
-    final List<String> splitedColors = color.split(',');
-    for (String c in splitedColors) {
-      colors.add(c);
-    }
   }
 }
 

@@ -1,5 +1,5 @@
 import 'package:e_commerce_app/presentation/state_holder/auth/otp_verification_controller.dart';
-import 'package:e_commerce_app/presentation/ui/screens/auth/complete_profile_screen.dart';
+import 'package:e_commerce_app/presentation/ui/screens/home_screen.dart';
 import 'package:e_commerce_app/presentation/ui/utility/app_colors.dart';
 import 'package:e_commerce_app/presentation/ui/utility/image_assets.dart';
 import 'package:flutter/material.dart';
@@ -54,7 +54,7 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
                   height: 12,
                 ),
                 Text(
-                  'A 4 Digit OTP Code has been Sent',
+                  'A 6 Digit OTP Code has been Sent',
                   style: Theme.of(context)
                       .textTheme
                       .titleMedium
@@ -67,7 +67,7 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
                 PinCodeTextField(
                   controller: _otpVerficationController,
                   keyboardType: TextInputType.number,
-                  length: 4,
+                  length: 6,
                   obscureText: false,
                   animationType: AnimationType.fade,
                   validator: (value) {
@@ -186,7 +186,7 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
       _otpVerficationController.text.trim(),
     );
     if (response) {
-      Get.to(CompleteProfileScreen());
+      Get.to(HomeScreen());
     } else {
       Get.snackbar(
         'Failed',
