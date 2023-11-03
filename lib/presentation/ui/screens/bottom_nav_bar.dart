@@ -4,7 +4,7 @@ import 'package:e_commerce_app/presentation/state_holder/main_bottom_nav_control
 import 'package:e_commerce_app/presentation/state_holder/product/new_product_controller.dart';
 import 'package:e_commerce_app/presentation/state_holder/product/popular_product_contoller.dart';
 import 'package:e_commerce_app/presentation/state_holder/product/special_product_controller.dart';
-import 'package:e_commerce_app/presentation/ui/screens/cart_screen.dart';
+import 'package:e_commerce_app/presentation/ui/screens/cart_list_screen.dart';
 import 'package:e_commerce_app/presentation/ui/screens/categories_screen.dart';
 import 'package:e_commerce_app/presentation/ui/screens/home_screen.dart';
 import 'package:e_commerce_app/presentation/ui/screens/wish_list_screen.dart';

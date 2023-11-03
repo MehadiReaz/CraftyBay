@@ -1,4 +1,5 @@
 import 'package:e_commerce_app/presentation/state_holder/add_to_cart_controller.dart';
+import 'package:e_commerce_app/presentation/state_holder/cart_list_controller.dart';
 import 'package:e_commerce_app/presentation/state_holder/product_details_controller.dart';
 import 'package:e_commerce_app/presentation/state_holder/category_controller.dart';
 import 'package:e_commerce_app/presentation/state_holder/auth/email_verification_controller.dart';
@@ -8,6 +9,7 @@ import 'package:e_commerce_app/presentation/state_holder/auth/otp_verification_c
 import 'package:e_commerce_app/presentation/state_holder/product/new_product_controller.dart';
 import 'package:e_commerce_app/presentation/state_holder/product/popular_product_contoller.dart';
 import 'package:e_commerce_app/presentation/state_holder/product/special_product_controller.dart';
+import 'package:e_commerce_app/presentation/state_holder/product_list_controller.dart';
 import 'package:get/get.dart';
 
 class StateHolderBinder extends Bindings {
@@ -23,5 +25,7 @@ class StateHolderBinder extends Bindings {
     Get.put(NewProductController());
     Get.put(ProductDetailsController());
     Get.put(AddToCartController());
+    Get.put(CartListController());
+    Get.put(ProductListController());
   }
 }
