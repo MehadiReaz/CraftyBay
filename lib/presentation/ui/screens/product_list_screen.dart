@@ -1,3 +1,4 @@
+import 'package:e_commerce_app/data/models/product_model.dart';
 import 'package:e_commerce_app/presentation/state_holder/product_list_controller.dart';
 import 'package:e_commerce_app/presentation/ui/screens/bottom_nav_bar.dart';
 import 'package:e_commerce_app/presentation/ui/widgets/product_card.dart';
@@ -5,8 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class ProductListScreen extends StatefulWidget {
-  const ProductListScreen({super.key, required this.categoryId});
-  final int categoryId;
+  const ProductListScreen({super.key, this.categoryId, this.productModel});
+  final int? categoryId;
+  final ProductModel? productModel;
   @override
   State<ProductListScreen> createState() => _ProductListScreenState();
 }
@@ -16,9 +18,13 @@ class _ProductListScreenState extends State<ProductListScreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      Get.find<ProductListController>()
-          .getProductListByCategoryList(widget.categoryId);
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      if (widget.categoryId != null) {
+        Get.find<ProductListController>()
+            .getProductListByCategoryList(widget.categoryId!);
+      } else if (widget.productModel != null) {
+        Get.find<ProductListController>().setProducts(widget.productModel!);
+      }
     });
   }
 
