@@ -23,7 +23,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   void goToNextScreen() async {
     await AuthController.getAccessToken();
-    Future.delayed(const Duration(seconds: 3)).then((value) {
+    Future.delayed(const Duration(seconds: 1)).then((value) {
       Get.offAll(() => AuthController.isLoggedIn
           ? MainBottomNavigationBar()
           : EmailVerificationScreen());

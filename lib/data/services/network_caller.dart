@@ -1,6 +1,5 @@
 import 'dart:convert';
-import 'dart:math';
-
+import 'dart:developer';
 import 'package:e_commerce_app/application/app.dart';
 import 'package:e_commerce_app/data/models/network_response.dart';
 import 'package:e_commerce_app/presentation/state_holder/auth/auth_controller.dart';
@@ -9,20 +8,22 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 
 class NetworkCaller {
-  Future<NetworkResponse> getRequest(
-    String url,
-  ) async {
+  Future<NetworkResponse> getRequest(String url, {bool isLogin = false}) async {
     try {
-      Response response = await get(
-        Uri.parse(url),
-        // headers: {'token': AuthUtility.userInfo.token.toString()}
-      );
+      Response response = await get(Uri.parse(url),
+          headers: {'token': AuthController.accessToken.toString()});
+      log(response.statusCode.toString());
+      log(response.body);
       if (response.statusCode == 200 &&
           jsonDecode(response.body)['msg'] == ('success')) {
         return NetworkResponse(
             statusCode: response.statusCode,
             responseJson: jsonDecode(response.body),
             isSuccess: true);
+      } else if (response.statusCode == 401) {
+        if (isLogin) {
+          goToLogin();
+        }
       } else {
         return NetworkResponse(
             isSuccess: false,
@@ -30,14 +31,14 @@ class NetworkCaller {
             responseJson: null);
       }
     } catch (e) {
-      log(e.toString() as num);
+      log(e.toString());
     }
     return NetworkResponse(
         isSuccess: false, statusCode: -1, responseJson: null);
   }
 
-  Future<NetworkResponse> postRequest(
-      String url, Map<String, dynamic> body) async {
+  Future<NetworkResponse> postRequest(String url, Map<String, dynamic> body,
+      {bool isLogin = false}) async {
     try {
       Response response = await post(Uri.parse(url),
           headers: {
@@ -54,6 +55,9 @@ class NetworkCaller {
             responseJson: jsonDecode(response.body),
             isSuccess: true);
       } else if (response.statusCode == 401) {
+        if (isLogin == false) {
+          goToLogin();
+        }
       } else {
         return NetworkResponse(
             isSuccess: false,
@@ -61,7 +65,7 @@ class NetworkCaller {
             responseJson: null);
       }
     } catch (e) {
-      log(e.toString() as num);
+      log(e.toString());
     }
     return NetworkResponse(
         isSuccess: false, statusCode: -1, responseJson: null);

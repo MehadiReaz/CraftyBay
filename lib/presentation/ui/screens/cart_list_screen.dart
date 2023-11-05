@@ -1,15 +1,26 @@
 import 'package:e_commerce_app/presentation/state_holder/cart_list_controller.dart';
 import 'package:e_commerce_app/presentation/state_holder/main_bottom_nav_controller.dart';
 import 'package:e_commerce_app/presentation/ui/utility/app_colors.dart';
-import 'package:e_commerce_app/presentation/ui/utility/image_assets.dart';
-import 'package:e_commerce_app/presentation/ui/widgets/custom_stepper.dart';
+import 'package:e_commerce_app/presentation/ui/widgets/cart_product_card.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class CartScreen extends StatelessWidget {
+class CartScreen extends StatefulWidget {
   const CartScreen({super.key});
 
   @override
+  State<CartScreen> createState() => _CartScreenState();
+}
+
+class _CartScreenState extends State<CartScreen> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Get.find<CartListController>().getCartList();
+    });
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -28,156 +39,83 @@ class CartScreen extends StatelessWidget {
           ),
         ),
       ),
-      body: GetBuilder<CartListController>(
-        builder: (_) {
-          return Column(
-            children: [
-              Expanded(
-                child: productDetails(),
-              ),
-              bottomBar(),
-            ],
-          );
-        },
-      ),
-    );
-  }
-
-  Container bottomBar() {
-    return Container(
-      height: 70,
-      // width: double.infinity,
-      decoration: BoxDecoration(
-        color: AppColor.primaryColor.withOpacity(.1),
-        borderRadius: BorderRadiusDirectional.only(
-          topEnd: Radius.circular(15),
-          topStart: Radius.circular(15),
-        ),
-      ),
-      child: Row(
+      body: Column(
         children: [
-          SizedBox(
-            width: 20,
-          ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Total Price',
-                style: TextStyle(
-                  color: Colors.black54,
-                  fontSize: 12,
-                ),
+          Expanded(
+            child: Padding(
+              padding: EdgeInsets.all(10),
+              child: GetBuilder<CartListController>(
+                builder: (cartListController) {
+                  if (cartListController.getCartListInProgress) {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  }
+                  return ListView.builder(
+                      itemCount:
+                          cartListController.cartListModel.data?.length ?? 0,
+                      itemBuilder: (context, index) {
+                        return CartProductCard(
+                            cartData:
+                                cartListController.cartListModel.data![index]);
+                      });
+                },
               ),
-              SizedBox(
-                height: 3,
-              ),
-              Text(
-                '\$1000.00',
-                style: TextStyle(
-                    color: AppColor.primaryColor,
-                    fontSize: 16,
-                    fontWeight: FontWeight.w700),
-              ),
-            ],
-          ),
-          Spacer(),
-          SizedBox(
-            width: 150,
-            child: ElevatedButton(
-              onPressed: () {},
-              child: Text('Checkout'),
             ),
           ),
-          SizedBox(
-            width: 20,
+          Container(
+            height: 70,
+            // width: double.infinity,
+            decoration: BoxDecoration(
+              color: AppColor.primaryColor.withOpacity(.1),
+              borderRadius: BorderRadiusDirectional.only(
+                topEnd: Radius.circular(15),
+                topStart: Radius.circular(15),
+              ),
+            ),
+            child: Row(
+              children: [
+                SizedBox(
+                  width: 20,
+                ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Total Price',
+                      style: TextStyle(
+                        color: Colors.black54,
+                        fontSize: 12,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 3,
+                    ),
+                    Text(
+                      '\$1000.00',
+                      style: TextStyle(
+                          color: AppColor.primaryColor,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w700),
+                    ),
+                  ],
+                ),
+                Spacer(),
+                SizedBox(
+                  width: 150,
+                  child: ElevatedButton(
+                    onPressed: () {},
+                    child: Text('Checkout'),
+                  ),
+                ),
+                SizedBox(
+                  width: 20,
+                ),
+              ],
+            ),
           ),
         ],
-      ),
-    );
-  }
-
-  Padding productDetails() {
-    return Padding(
-      padding: EdgeInsets.all(10),
-      child: GetBuilder<CartListController>(
-        builder: (cartListController) {
-          return ListView.builder(
-              itemCount: 20,
-              itemBuilder: (context, index) {
-                return Card(
-                  child: Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Container(
-                          height: 80,
-                          child: Image.asset(
-                            ImageAssets.craftyBayShoePNG,
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                        SizedBox(
-                          width: 15,
-                        ),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'New Year Special',
-                                style: TextStyle(
-                                    fontSize: 15,
-                                    color: Colors.black54,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                              SizedBox(
-                                height: 5,
-                              ),
-                              Text(
-                                'New Year Special',
-                                style: TextStyle(
-                                  fontSize: 12,
-                                  color: Colors.black54,
-                                ),
-                              ),
-                              SizedBox(
-                                height: 18,
-                              ),
-                              Text(
-                                '\$${cartListController.cartListModel.data}',
-                                style: TextStyle(
-                                    fontSize: 12,
-                                    color: AppColor.primaryColor,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          children: [
-                            IconButton(
-                              onPressed: () {},
-                              icon: Icon(Icons.delete_forever_outlined),
-                            ),
-                            CustomStepper(
-                                lowerLimit: 1,
-                                upperLimit: 10,
-                                stepValue: 1,
-                                value: 1,
-                                onChange: (_) {})
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                );
-              });
-        },
       ),
     );
   }

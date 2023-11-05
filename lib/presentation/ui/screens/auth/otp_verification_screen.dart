@@ -1,5 +1,5 @@
 import 'package:e_commerce_app/presentation/state_holder/auth/otp_verification_controller.dart';
-import 'package:e_commerce_app/presentation/ui/screens/home_screen.dart';
+import 'package:e_commerce_app/presentation/ui/screens/bottom_nav_bar.dart';
 import 'package:e_commerce_app/presentation/ui/utility/app_colors.dart';
 import 'package:e_commerce_app/presentation/ui/utility/image_assets.dart';
 import 'package:flutter/material.dart';
@@ -186,7 +186,7 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
       _otpVerficationController.text.trim(),
     );
     if (response) {
-      Get.to(HomeScreen());
+      Get.to(MainBottomNavigationBar());
     } else {
       Get.snackbar(
         'Failed',

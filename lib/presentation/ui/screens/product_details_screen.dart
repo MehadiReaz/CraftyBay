@@ -84,7 +84,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    productDetails.product!.title ?? '',
+                    productDetails.product?.title ?? '',
                     style: TextStyle(
                       overflow: TextOverflow.fade,
                       fontSize: 16,
@@ -108,7 +108,9 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                   upperLimit: 10,
                   stepValue: 1,
                   value: 1,
-                  onChange: (_) {}),
+                  onChange: (value) {
+                    quantity = value;
+                  }),
             ],
           ),
         ),
@@ -124,7 +126,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                     size: 25,
                   ),
                   Text(
-                    '${productDetails.product?.star}',
+                    '${productDetails.product?.star ?? 0}',
                     style: TextStyle(
                       color: Colors.blueGrey,
                       letterSpacing: 0.45,
@@ -203,7 +205,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                     titleText: 'Description',
                   ),
                   Text(
-                    '${productDetails.des}',
+                    '${productDetails.des ?? ''}',
                     textAlign: TextAlign.justify,
                     style: TextStyle(
                       fontSize: 16,
@@ -269,7 +271,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                 height: 3,
               ),
               Text(
-                '\$${productDetails.product?.price}',
+                '\$${productDetails.product?.price ?? 0}',
                 style: TextStyle(
                     color: AppColor.primaryColor,
                     fontSize: 16,
@@ -295,7 +297,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                     .availableColors[_selectedColorIndex],
                                 productDetailsController
                                     .availableSizes[_selectedSizeIndex],
-                                1)
+                                quantity)
                             .then((result) {
                           if (result) {
                             Get.snackbar('Success', 'Add to cart successful.',
