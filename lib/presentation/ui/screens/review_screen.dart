@@ -1,6 +1,5 @@
 import 'package:e_commerce_app/data/models/review_model.dart';
 import 'package:e_commerce_app/presentation/state_holder/review_controller.dart';
-import 'package:e_commerce_app/presentation/ui/screens/bottom_nav_bar.dart';
 import 'package:e_commerce_app/presentation/ui/utility/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
