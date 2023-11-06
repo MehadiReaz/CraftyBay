@@ -1,6 +1,9 @@
 import 'package:e_commerce_app/data/models/wish_list_model.dart';
+import 'package:e_commerce_app/presentation/state_holder/delete_wish_list_product%20_controller.dart';
+import 'package:e_commerce_app/presentation/state_holder/wish_list_controller.dart';
 import 'package:e_commerce_app/presentation/ui/utility/app_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class WishListProductCard extends StatelessWidget {
   final WishList productData;
@@ -17,7 +20,7 @@ class WishListProductCard extends StatelessWidget {
       elevation: 4,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
       child: SizedBox(
-        width: 130,
+        width: 160,
         child: Column(
           children: [
             Container(
@@ -40,7 +43,7 @@ class WishListProductCard extends StatelessWidget {
                     maxLines: 1,
                     style: const TextStyle(
                         overflow: TextOverflow.ellipsis,
-                        fontSize: 12,
+                        fontSize: 20,
                         fontWeight: FontWeight.w500,
                         color: Colors.blueGrey),
                   ),
@@ -53,7 +56,7 @@ class WishListProductCard extends StatelessWidget {
                       Text(
                         '\$${productData.product?.price ?? 0}',
                         style: TextStyle(
-                            fontSize: 13,
+                            fontSize: 20,
                             color: AppColor.primaryColor,
                             fontWeight: FontWeight.w500),
                       ),
@@ -62,14 +65,14 @@ class WishListProductCard extends StatelessWidget {
                         children: [
                           const Icon(
                             Icons.star,
-                            size: 15,
+                            size: 20,
                             color: Colors.amber,
                           ),
                           Text(
                             '${productData.product?.star ?? 0}',
                             style: const TextStyle(
                                 overflow: TextOverflow.ellipsis,
-                                fontSize: 12,
+                                fontSize: 20,
                                 fontWeight: FontWeight.w500,
                                 color: Colors.blueGrey),
                           ),
@@ -81,12 +84,12 @@ class WishListProductCard extends StatelessWidget {
                           padding: const EdgeInsets.all(2.0),
                           child: InkWell(
                             onTap: () async {
-                              // await deleteWishlistProduct(
-                              //     productData.productId!);
+                              await deleteWishlistProduct(
+                                  productData.productId!);
                             },
                             child: const Icon(
                               Icons.delete_forever_outlined,
-                              size: 12,
+                              size: 20,
                               color: Colors.white,
                             ),
                           ),
@@ -103,22 +106,22 @@ class WishListProductCard extends StatelessWidget {
     );
   }
 
-  // Future<void> deleteWishlistProduct(int productId) async {
-  //   final response = await Get.find<DeleteWishListProductController>()
-  //       .deleteWishlistProduct(productId);
-  //   if (response) {
-  //     Get.snackbar('Success', 'Remove from wishlist successful.',
-  //         backgroundColor: Colors.green,
-  //         colorText: Colors.white,
-  //         borderRadius: 10,
-  //         snackPosition: SnackPosition.BOTTOM);
-  //     await Get.find<WishListScreenController>().getWishlistProducts();
-  //   } else {
-  //     Get.snackbar('Failed', 'Remove from wishlist failed!',
-  //         backgroundColor: Colors.red,
-  //         colorText: Colors.white,
-  //         borderRadius: 10,
-  //         snackPosition: SnackPosition.BOTTOM);
-  //   }
-  // }
+  Future<void> deleteWishlistProduct(int productId) async {
+    final response = await Get.find<DeleteWishListProductController>()
+        .deleteWishlistProduct(productId);
+    if (response) {
+      Get.snackbar('Success', 'Remove from wishlist successful.',
+          backgroundColor: Colors.green,
+          colorText: Colors.white,
+          borderRadius: 10,
+          snackPosition: SnackPosition.BOTTOM);
+      await Get.find<WishListController>().getWishList();
+    } else {
+      Get.snackbar('Failed', 'Remove from wishlist failed!',
+          backgroundColor: Colors.red,
+          colorText: Colors.white,
+          borderRadius: 10,
+          snackPosition: SnackPosition.BOTTOM);
+    }
+  }
 }

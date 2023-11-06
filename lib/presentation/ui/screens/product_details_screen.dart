@@ -2,11 +2,11 @@ import 'package:e_commerce_app/data/models/product_details.dart';
 import 'package:e_commerce_app/presentation/state_holder/add_to_cart_controller.dart';
 import 'package:e_commerce_app/presentation/state_holder/product_details_controller.dart';
 import 'package:e_commerce_app/presentation/ui/screens/bottom_nav_bar.dart';
-import 'package:e_commerce_app/presentation/ui/screens/review_screen.dart';
 import 'package:e_commerce_app/presentation/ui/utility/app_colors.dart';
 import 'package:e_commerce_app/presentation/ui/widgets/color_picker.dart';
 import 'package:e_commerce_app/presentation/ui/widgets/custom_stepper.dart';
 import 'package:e_commerce_app/presentation/ui/widgets/product_image_slider.dart';
+import 'package:e_commerce_app/presentation/ui/widgets/product_rating_review_wishlist.dart';
 import 'package:e_commerce_app/presentation/ui/widgets/size_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -76,7 +76,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
     return Column(
       children: [
         Padding(
-          padding: EdgeInsets.all(10),
+          padding: EdgeInsets.symmetric(vertical: 16, horizontal: 16),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -113,63 +113,12 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
           ),
         ),
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: 8),
-          child: Row(
-            children: [
-              Row(
-                children: [
-                  Icon(
-                    Icons.star,
-                    color: Colors.amber,
-                    size: 25,
-                  ),
-                  Text(
-                    '${productDetails.product?.star ?? 0}',
-                    style: TextStyle(
-                      color: Colors.blueGrey,
-                      letterSpacing: 0.45,
-                      fontSize: 18,
-                      fontWeight: FontWeight.w700,
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(
-                width: 5,
-              ),
-              TextButton(
-                onPressed: () {
-                  Get.to(
-                    ReviewScreen(productId: productDetails.productId!),
-                  );
-                },
-                child: Text(
-                  'Reviews',
-                  style: TextStyle(
-                    letterSpacing: 0.45,
-                    fontSize: 18,
-                    color: AppColor.primaryColor,
-                  ),
-                ),
-              ),
-              SizedBox(
-                width: 5,
-              ),
-              InkWell(
-                onTap: () {},
-                child: Card(
-                  color: AppColor.primaryColor,
-                  child: Container(
-                    decoration:
-                        BoxDecoration(borderRadius: BorderRadius.circular(5)),
-                    child: Icon(
-                      Icons.favorite_outline,
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
-              ),
-            ],
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: GetBuilder<ProductDetailsController>(
+            builder: (productDetailsController) {
+              return ProductRatingReviewWishList(
+                  productDetailsData: productDetailsController.productDetails);
+            },
           ),
         ),
         GetBuilder<ProductDetailsController>(
@@ -183,22 +132,15 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                     titleText: 'Color',
                   ),
                   Container(
-                    height: 50,
-                    child: ProductColorPicker(
-                        colors: productDetailsController.availableColors,
-                        onSelected: (int selectedColor) {
-                          _selectedColorIndex = selectedColor;
-                        },
-                        initialSelected: 0),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
+                      height: 50,
+                      child: ProductColorPicker(
+                          colors: productDetailsController.availableColors,
+                          onSelected: (int selectedColor) {
+                            _selectedColorIndex = selectedColor;
+                          },
+                          initialSelected: 0)),
                   ProductDetailsScreenTitleTextWidget(
                     titleText: 'Size',
-                  ),
-                  SizedBox(
-                    height: 10,
                   ),
                   Container(
                     height: 30,
@@ -209,14 +151,8 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                         },
                         initialSelected: 0),
                   ),
-                  SizedBox(
-                    height: 15,
-                  ),
                   ProductDetailsScreenTitleTextWidget(
                     titleText: 'Description',
-                  ),
-                  SizedBox(
-                    height: 10,
                   ),
                   Text(
                     '${productDetails.des ?? ''}',

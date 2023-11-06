@@ -1,4 +1,3 @@
-import 'package:e_commerce_app/data/models/product_details.dart';
 import 'package:e_commerce_app/presentation/state_holder/main_bottom_nav_controller.dart';
 import 'package:e_commerce_app/presentation/state_holder/wish_list_controller.dart';
 import 'package:e_commerce_app/presentation/ui/screens/product_details_screen.dart';
@@ -66,6 +65,8 @@ class _WishListScreenState extends State<WishListScreen> {
               child: Padding(
                 padding: EdgeInsets.symmetric(vertical: 8),
                 child: GridView.builder(
+                    itemCount:
+                        wishListController.wishListModel.data?.length ?? 0,
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisSpacing: 16,
                       mainAxisSpacing: 16,
