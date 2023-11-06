@@ -26,7 +26,12 @@ class _SiezPickerState extends State<SizePicker> {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
+    return ListView.separated(
+        separatorBuilder: (BuildContext context, int index) {
+          return const SizedBox(
+            width: 8,
+          );
+        },
         scrollDirection: Axis.horizontal,
         itemCount: widget.sizes.length,
         itemBuilder: (context, index) {
@@ -38,21 +43,19 @@ class _SiezPickerState extends State<SizePicker> {
               },
               child: Container(
                 decoration: BoxDecoration(
-                  border: Border.all(
-                    color: Colors.black,
-                  ),
-                ),
-                child: CircleAvatar(
-                  backgroundColor: _selectedSizesIndex == index
+                  border: Border.all(color: Colors.grey),
+                  borderRadius: BorderRadius.circular(4),
+                  color: _selectedSizesIndex == index
                       ? AppColor.primaryColor
                       : Colors.white,
-                  child: Text(
-                    widget.sizes[index],
-                    style: TextStyle(
-                        color: _selectedSizesIndex == index
-                            ? Colors.white
-                            : Colors.black),
-                  ),
+                ),
+                padding: EdgeInsets.all(6),
+                child: Text(
+                  widget.sizes[index],
+                  style: TextStyle(
+                      color: _selectedSizesIndex == index
+                          ? Colors.white
+                          : Colors.black),
                 ),
               ));
         });

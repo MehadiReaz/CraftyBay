@@ -10,6 +10,7 @@ import 'package:e_commerce_app/presentation/state_holder/product/new_product_con
 import 'package:e_commerce_app/presentation/state_holder/product/popular_product_contoller.dart';
 import 'package:e_commerce_app/presentation/state_holder/product/special_product_controller.dart';
 import 'package:e_commerce_app/presentation/state_holder/product_list_controller.dart';
+import 'package:e_commerce_app/presentation/state_holder/review_controller.dart';
 import 'package:get/get.dart';
 
 class StateHolderBinder extends Bindings {
@@ -27,5 +28,6 @@ class StateHolderBinder extends Bindings {
     Get.put(AddToCartController());
     Get.put(CartListController());
     Get.put(ProductListController());
+    Get.put(ReviewController());
   }
 }

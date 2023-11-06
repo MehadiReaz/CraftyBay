@@ -90,11 +90,15 @@ class CartProductCard extends StatelessWidget {
                   icon: Icon(Icons.delete_forever_outlined),
                 ),
                 CustomStepper(
-                    lowerLimit: 1,
-                    upperLimit: 10,
-                    stepValue: 1,
-                    value: 1,
-                    onChange: (_) {})
+                  lowerLimit: 1,
+                  upperLimit: 10,
+                  stepValue: 1,
+                  value: cartData.quantity ?? 1,
+                  onChange: (int value) {
+                    Get.find<CartListController>()
+                        .changeItem(cartData.id!, value);
+                  },
+                ),
               ],
             ),
           ],

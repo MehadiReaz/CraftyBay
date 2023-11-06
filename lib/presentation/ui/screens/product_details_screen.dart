@@ -7,7 +7,7 @@ import 'package:e_commerce_app/presentation/ui/utility/app_colors.dart';
 import 'package:e_commerce_app/presentation/ui/widgets/color_picker.dart';
 import 'package:e_commerce_app/presentation/ui/widgets/custom_stepper.dart';
 import 'package:e_commerce_app/presentation/ui/widgets/product_image_slider.dart';
-import 'package:e_commerce_app/presentation/ui/widgets/siez_picker.dart';
+import 'package:e_commerce_app/presentation/ui/widgets/size_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -108,9 +108,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                   upperLimit: 10,
                   stepValue: 1,
                   value: 1,
-                  onChange: (value) {
-                    quantity = value;
-                  }),
+                  onChange: (value) {}),
             ],
           ),
         ),
@@ -142,7 +140,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
               TextButton(
                 onPressed: () {
                   Get.to(
-                    ReviewScreen(),
+                    ReviewScreen(productId: productDetails.productId!),
                   );
                 },
                 child: Text(
@@ -157,14 +155,17 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
               SizedBox(
                 width: 5,
               ),
-              Card(
-                color: AppColor.primaryColor,
-                child: Container(
-                  decoration:
-                      BoxDecoration(borderRadius: BorderRadius.circular(5)),
-                  child: Icon(
-                    Icons.favorite_outline,
-                    color: Colors.white,
+              InkWell(
+                onTap: () {},
+                child: Card(
+                  color: AppColor.primaryColor,
+                  child: Container(
+                    decoration:
+                        BoxDecoration(borderRadius: BorderRadius.circular(5)),
+                    child: Icon(
+                      Icons.favorite_outline,
+                      color: Colors.white,
+                    ),
                   ),
                 ),
               ),
@@ -182,15 +183,22 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                     titleText: 'Color',
                   ),
                   Container(
-                      height: 50,
-                      child: ProductColorPicker(
-                          colors: productDetailsController.availableColors,
-                          onSelected: (int selectedColor) {
-                            _selectedColorIndex = selectedColor;
-                          },
-                          initialSelected: 0)),
+                    height: 50,
+                    child: ProductColorPicker(
+                        colors: productDetailsController.availableColors,
+                        onSelected: (int selectedColor) {
+                          _selectedColorIndex = selectedColor;
+                        },
+                        initialSelected: 0),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
                   ProductDetailsScreenTitleTextWidget(
                     titleText: 'Size',
+                  ),
+                  SizedBox(
+                    height: 10,
                   ),
                   Container(
                     height: 30,
@@ -201,8 +209,14 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                         },
                         initialSelected: 0),
                   ),
+                  SizedBox(
+                    height: 15,
+                  ),
                   ProductDetailsScreenTitleTextWidget(
                     titleText: 'Description',
+                  ),
+                  SizedBox(
+                    height: 10,
                   ),
                   Text(
                     '${productDetails.des ?? ''}',
@@ -297,7 +311,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                     .availableColors[_selectedColorIndex],
                                 productDetailsController
                                     .availableSizes[_selectedSizeIndex],
-                                quantity)
+                                5)
                             .then((result) {
                           if (result) {
                             Get.snackbar('Success', 'Add to cart successful.',

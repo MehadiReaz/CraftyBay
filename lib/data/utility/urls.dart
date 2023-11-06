@@ -18,4 +18,8 @@ class urls {
   static String getProductByCategory(int categoryId) =>
       '$_baseUrl/ListProductByCategory/$categoryId';
   static String removeFromCart(int id) => '$_baseUrl/DeleteCartList/$id';
+  static String getReview(int productId) =>
+      '$_baseUrl/ListReviewByProduct/$productId';
+
+  static String getWishList = '$_baseUrl/ProductWishList';
 }
