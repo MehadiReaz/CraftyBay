@@ -1,4 +1,5 @@
 import 'package:e_commerce_app/data/models/product.dart';
+import 'package:e_commerce_app/presentation/state_holder/create_wish_list_controller.dart';
 import 'package:e_commerce_app/presentation/ui/screens/product_details_screen.dart';
 import 'package:e_commerce_app/presentation/ui/utility/app_colors.dart';
 import 'package:flutter/material.dart';
@@ -86,14 +87,20 @@ class ProductCard extends StatelessWidget {
                     SizedBox(
                       width: 5,
                     ),
-                    Card(
-                      color: AppColor.primaryColor,
-                      child: Container(
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(5)),
-                        child: Icon(
-                          Icons.favorite_outline,
-                          color: Colors.white,
+                    InkWell(
+                      onTap: () async {
+                        Get.find<CreateWishListController>()
+                            .setProductInWishList(product.id!);
+                      },
+                      child: Card(
+                        color: AppColor.primaryColor,
+                        child: Container(
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(5)),
+                          child: Icon(
+                            Icons.favorite_outline,
+                            color: Colors.white,
+                          ),
                         ),
                       ),
                     )

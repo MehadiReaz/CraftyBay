@@ -20,14 +20,14 @@ class ProductRatingReviewWishList extends StatelessWidget {
           children: [
             const Icon(
               Icons.star,
-              size: 18,
+              size: 24,
               color: Colors.amber,
             ),
             Text(
               '${productDetailsData.product?.star ?? 0}',
               style: const TextStyle(
                   overflow: TextOverflow.ellipsis,
-                  fontSize: 15,
+                  fontSize: 20,
                   fontWeight: FontWeight.w500,
                   color: Colors.blueGrey),
             ),
@@ -42,7 +42,7 @@ class ProductRatingReviewWishList extends StatelessWidget {
           child: Text(
             'Reviews',
             style: TextStyle(
-                fontSize: 15,
+                fontSize: 20,
                 color: AppColor.primaryColor,
                 fontWeight: FontWeight.w500),
           ),
@@ -59,7 +59,7 @@ class ProductRatingReviewWishList extends StatelessWidget {
                 },
                 child: const Icon(
                   Icons.favorite_border,
-                  size: 16,
+                  size: 20,
                   color: Colors.white,
                 ),
               ),

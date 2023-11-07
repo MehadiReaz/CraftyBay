@@ -87,7 +87,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                     productDetails.product?.title ?? '',
                     style: TextStyle(
                       overflow: TextOverflow.fade,
-                      fontSize: 16,
+                      fontSize: 20,
                       color: Colors.black54,
                       fontWeight: FontWeight.w500,
                     ),
@@ -113,7 +113,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
+          padding: const EdgeInsets.symmetric(horizontal: 8),
           child: GetBuilder<ProductDetailsController>(
             builder: (productDetailsController) {
               return ProductRatingReviewWishList(
@@ -132,15 +132,22 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                     titleText: 'Color',
                   ),
                   Container(
-                      height: 50,
-                      child: ProductColorPicker(
-                          colors: productDetailsController.availableColors,
-                          onSelected: (int selectedColor) {
-                            _selectedColorIndex = selectedColor;
-                          },
-                          initialSelected: 0)),
+                    height: 50,
+                    child: ProductColorPicker(
+                        colors: productDetailsController.availableColors,
+                        onSelected: (int selectedColor) {
+                          _selectedColorIndex = selectedColor;
+                        },
+                        initialSelected: 0),
+                  ),
+                  SizedBox(
+                    height: 16,
+                  ),
                   ProductDetailsScreenTitleTextWidget(
                     titleText: 'Size',
+                  ),
+                  SizedBox(
+                    height: 8,
                   ),
                   Container(
                     height: 30,
@@ -151,8 +158,14 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                         },
                         initialSelected: 0),
                   ),
+                  SizedBox(
+                    height: 16,
+                  ),
                   ProductDetailsScreenTitleTextWidget(
                     titleText: 'Description',
+                  ),
+                  SizedBox(
+                    height: 8,
                   ),
                   Text(
                     '${productDetails.des ?? ''}',
