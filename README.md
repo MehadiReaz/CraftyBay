@@ -1,4 +1,4 @@
-### CraftyBay
+# CraftyBay
 
 CraftyBay is an e-commerce application that provides a smooth user experience and high security to the user.
 
