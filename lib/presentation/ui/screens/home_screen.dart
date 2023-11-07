@@ -1,9 +1,13 @@
+import 'package:e_commerce_app/presentation/state_holder/auth/auth_controller.dart';
+import 'package:e_commerce_app/presentation/state_holder/auth/read_profile_controller.dart';
 import 'package:e_commerce_app/presentation/state_holder/category_controller.dart';
 import 'package:e_commerce_app/presentation/state_holder/home_slider_controller.dart';
 import 'package:e_commerce_app/presentation/state_holder/main_bottom_nav_controller.dart';
 import 'package:e_commerce_app/presentation/state_holder/product/new_product_controller.dart';
 import 'package:e_commerce_app/presentation/state_holder/product/popular_product_contoller.dart';
 import 'package:e_commerce_app/presentation/state_holder/product/special_product_controller.dart';
+import 'package:e_commerce_app/presentation/ui/screens/auth/complete_profile_screen.dart';
+import 'package:e_commerce_app/presentation/ui/screens/auth/email_verification_screen.dart';
 import 'package:e_commerce_app/presentation/ui/screens/product_list_screen.dart';
 import 'package:e_commerce_app/presentation/ui/utility/app_colors.dart';
 import 'package:e_commerce_app/presentation/ui/utility/image_assets.dart';
@@ -191,6 +195,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   AppBar get homeScreenAppBar {
     return AppBar(
+      automaticallyImplyLeading: false,
       backgroundColor: Colors.white,
       elevation: 0,
       title: Row(
@@ -201,8 +206,18 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           Spacer(),
           CircularIconButton(
-            icon: Icons.person_2_outlined,
+            icon: Icons.brightness_2_outlined,
             onTap: () {},
+          ),
+          SizedBox(
+            width: 10,
+          ),
+          CircularIconButton(
+            icon: Icons.person_2_outlined,
+            onTap: () async {
+              await Get.find<ReadProfileController>().readProfileData();
+              Get.to(() => CompleteProfileScreen());
+            },
           ),
           SizedBox(
             width: 10,
@@ -217,6 +232,22 @@ class _HomeScreenState extends State<HomeScreen> {
           CircularIconButton(
             icon: Icons.notifications_active_outlined,
             onTap: () {},
+          ),
+          SizedBox(
+            width: 10,
+          ),
+          CircularIconButton(
+            icon: Icons.logout_outlined,
+            onTap: () async {
+              await AuthController.clear();
+              await AuthController.getAccessToken();
+              Get.to(() => EmailVerificationScreen());
+              Get.snackbar('Success', 'Logout successful.',
+                  backgroundColor: Colors.green,
+                  colorText: Colors.white,
+                  borderRadius: 10,
+                  snackPosition: SnackPosition.BOTTOM);
+            },
           ),
         ],
       ),

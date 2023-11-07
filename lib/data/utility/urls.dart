@@ -30,4 +30,7 @@ class urls {
       '$_baseUrl/CreateWishList/$producId';
   static String removeProductInWishList(int producId) =>
       '$_baseUrl/RemoveWishList/$producId';
+
+  static String readProfile = '$_baseUrl/ReadProfile';
+  static String createProfile = '$_baseUrl/CreateProfile';
 }
