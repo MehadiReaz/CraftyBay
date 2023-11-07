@@ -2,6 +2,7 @@ import 'package:e_commerce_app/presentation/state_holder/add_to_cart_controller.
 import 'package:e_commerce_app/presentation/state_holder/auth/create_profile_controller.dart';
 import 'package:e_commerce_app/presentation/state_holder/auth/read_profile_controller.dart';
 import 'package:e_commerce_app/presentation/state_holder/cart_list_controller.dart';
+import 'package:e_commerce_app/presentation/state_holder/create_review_controller.dart';
 import 'package:e_commerce_app/presentation/state_holder/create_wish_list_controller.dart';
 import 'package:e_commerce_app/presentation/state_holder/delete_wish_list_product%20_controller.dart';
 import 'package:e_commerce_app/presentation/state_holder/product_details_controller.dart';
@@ -34,6 +35,7 @@ class StateHolderBinder extends Bindings {
     Get.put(CartListController());
     Get.put(ProductListController());
     Get.put(ReviewController());
+    Get.put(CreateReviewController());
     Get.put(WishListController());
     Get.put(CreateWishListController());
     Get.put(DeleteWishListProductController());

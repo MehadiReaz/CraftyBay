@@ -24,6 +24,7 @@ class urls {
 
   static String getReview(int productId) =>
       '$_baseUrl/ListReviewByProduct/$productId';
+  static String setReview = '$_baseUrl/CreateProductReview';
 
   static String getWishList = '$_baseUrl/ProductWishList';
   static String setProductInWishList(int producId) =>
