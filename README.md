@@ -8,8 +8,7 @@ CraftyBay is an e-commerce application that provides smooth user experiance and 
 
 ## Table of Contents
 
-[![Download]]([https://flutter.dev/](https://drive.google.com/file/d/1zK7vDcQvYb77DTJZ5CaKE-ZcYOSWi0Pt/view?usp=sharing))
-https://drive.google.com/file/d/1zK7vDcQvYb77DTJZ5CaKE-ZcYOSWi0Pt/view?usp=sharing
+[Download](https://drive.google.com/file/d/1zK7vDcQvYb77DTJZ5CaKE-ZcYOSWi0Pt/view?usp=sharing)
 - [Download](#download)
 - [About](#about)
 - [Getting Started](#getting-started)
