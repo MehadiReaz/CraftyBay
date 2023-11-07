@@ -28,11 +28,11 @@ CraftyBay is an e-commerce application that provides a smooth user experience an
 
 ## Getting Started
 
-  # Prerequisites
+  ### Prerequisites
   
   Before getting started, make sure to have Flutter installed on your machine. If it's not already installed, you can find installation instructions on the official Flutter website.
   
-  # Installation
+  ### Installation
   
   Follow these simple steps to run the News Read Application:
   
@@ -54,7 +54,7 @@ CraftyBay is an e-commerce application that provides a smooth user experience an
       flutter pub get
       ```
   
-  # How to Run
+  ### How to Run
   
   To run the application, follow these steps:
   
@@ -68,7 +68,7 @@ CraftyBay is an e-commerce application that provides a smooth user experience an
   
   Now, you're all set to explore the News Read Application on your device.
   
-  # Additional Commands (Optional)
+  ### Additional Commands (Optional)
   
   - You can run tests using the following command:
   
