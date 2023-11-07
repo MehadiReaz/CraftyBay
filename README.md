@@ -13,8 +13,9 @@ CraftyBay is an e-commerce application that provides a smooth user experience an
 - [About](#about)
 - [Getting Started](#getting-started)
 - [Features](#features)
+- [Api Documentation](#api-documentation)
 - [Screenshots](#screenshots)
-- [Used Packages](#usedpackages)
+- [Used Packages](#used-packages)
 - [Contributing](#contributing)
 - [License](#license)
 
@@ -84,6 +85,36 @@ CraftyBay is an e-commerce application that provides a smooth user experience an
   - For other available commands, consult the official Flutter documentation.
   
 ## Features
+
+  # Email Verification
+- Secure email verification to ensure user authentication.
+
+  # OTP Verification
+- OTP-based user verification for enhanced security.
+
+  # User Profile
+- User-friendly profile management.
+- Update and view user profiles.
+
+  # Cart Management
+- Add products to the shopping cart.
+- Remove products from the cart for easy shopping.
+
+  # Wishlist
+- Create and manage a wishlist of your favorite items.
+- Add and remove items from your wishlist.
+
+  # Product Review
+- Read and write product reviews to make informed buying decisions.
+
+  # Payment Gateway
+- A secure and efficient payment gateway for easy transactions.
+
+CraftyBay is your one-stop solution for all your e-commerce needs, making your shopping experience more enjoyable and convenient.
+
+## Api Documentation
+
+  [Documentation](https://documenter.getpostman.com/view/9518923/2s9Y5YRhaf)
   
 ## Screenshots
 
@@ -151,18 +182,43 @@ CraftyBay is an e-commerce application that provides a smooth user experience an
 </table>
 
 ## Used Packages
-  CraftyBay integrates the following packages to enhance functionality:
-  http: ^1.1.0: The HTTP package provides a straightforward way to make HTTP requests in your Flutter app. It's essential for fetching data from APIs and working with web services.  
-  flutter_svg: ^2.0.7: A Flutter package for rendering SVG (Scalable Vector Graphics) images. It allows you to easily display and manipulate SVG files in your Flutter application.  
-  get: ^4.6.5: Get is a state management library for Flutter that simplifies the process of managing application state. It provides a clean and efficient way to handle state and dependencies in your app.  
-  pin_code_fields: ^8.0.1: Pin Code Fields is a Flutter package that helps you implement PIN or OTP input fields in your app. It's highly customizable and easy to use for user authentication and verification.  
-  flutter_launcher_icons: ^0.13.1: This package simplifies the process of generating and setting app icons for your Flutter application. It allows you to customize app icons with ease.  
-  carousel_slider: ^4.2.1: Carousel Slider is a package for creating image carousels and sliders in your Flutter app. It's useful for creating interactive and dynamic image galleries.  
-  shared_preferences: ^2.2.1: Shared Preferences is a Flutter package for persisting simple key-value data in a platform-agnostic manner. It's commonly used for storing app settings and small amounts of data.  
-  flutter_rating_bar: ^4.0.1: Use this package to give a rating.  
-  pin_code_fields: ^8.0.1: Pin Code Fields is a Flutter package that helps you implement PIN or OTP input fields in your app. It's highly customizable and easy to use for user authentication and verification.  
+
+CraftyBay integrates the following packages to enhance functionality:
+
+- **http: ^1.1.0**:
+  - The HTTP package provides a straightforward way to make HTTP requests in your Flutter app. It's essential for fetching data from APIs and working with web services.
+
+- **flutter_svg: ^2.0.7**:
+  - A Flutter package for rendering SVG (Scalable Vector Graphics) images. It allows you to easily display and manipulate SVG files in your Flutter application.
+
+- **get: ^4.6.5**:
+  - Get is a state management library for Flutter that simplifies the process of managing application state. It provides a clean and efficient way to handle state and dependencies in your app.
+
+- **pin_code_fields: ^8.0.1**:
+  - Pin Code Fields is a Flutter package that helps you implement PIN or OTP input fields in your app. It's highly customizable and easy to use for user authentication and verification.
+
+- **flutter_launcher_icons: ^0.13.1**:
+  - This package simplifies the process of generating and setting app icons for your Flutter application. It allows you to customize app icons with ease.
+
+- **carousel_slider: ^4.2.1**:
+  - Carousel Slider is a package for creating image carousels and sliders in your Flutter app. It's useful for creating interactive and dynamic image galleries.
+
+- **shared_preferences: ^2.2.1**:
+  - Shared Preferences is a Flutter package for persisting simple key-value data in a platform-agnostic manner. It's commonly used for storing app settings and small amounts of data.
+
+- **flutter_rating_bar: ^4.0.1**:
+  - Use this package to implement a rating system in your app.
+
+- **pin_code_fields: ^8.0.1**:
+  - Pin Code Fields is a Flutter package that helps you implement PIN or OTP input fields in your app. It's highly customizable and easy to use for user authentication and verification.
+
+These packages are essential for adding various features and functionality to the CraftyBay E-commerce Application.
+
 
 ## Contribution
+
   [Mehadi Hasan Reaz](https://www.linkedin.com/in/reazmh/)
+  
 ## License
+
   [![License](https://img.shields.io/badge/License-MIT-green)](LICENSE)
