@@ -87,10 +87,10 @@ CraftyBay is an e-commerce application that provides a smooth user experience an
 ## Features
 
   ### Email Verification
-  - Secure email verification to ensure user authentication.
+  Secure email verification to ensure user authentication.
   
   ### OTP Verification
-  - OTP-based user verification for enhanced security.
+  OTP-based user verification for enhanced security.
   
   ### User Profile
   - User-friendly profile management.
