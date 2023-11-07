@@ -1,4 +1,4 @@
-![Screenshot_1699377994](https://github.com/MehadiReaz/CraftyBay/assets/65062761/4d867088-b878-4ddb-8980-c5b7beb1237c)![Screenshot_1699377845](https://github.com/MehadiReaz/CraftyBay/assets/65062761/9692ce60-9c73-4438-af9f-6fe316810687)### CraftyBay
+### CraftyBay
 
 CraftyBay is an e-commerce application that provides a smooth user experience and high security to the user.
 
