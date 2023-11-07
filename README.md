@@ -1,4 +1,4 @@
-### CraftyBay
+![Screenshot_1699377994](https://github.com/MehadiReaz/CraftyBay/assets/65062761/4d867088-b878-4ddb-8980-c5b7beb1237c)![Screenshot_1699377845](https://github.com/MehadiReaz/CraftyBay/assets/65062761/9692ce60-9c73-4438-af9f-6fe316810687)### CraftyBay
 
 CraftyBay is an e-commerce application that provides a smooth user experience and high security to the user.
 
@@ -27,11 +27,11 @@ CraftyBay is an e-commerce application that provides a smooth user experience an
 
 ## Getting Started
 
-  ## Prerequisites
+  # Prerequisites
   
   Before getting started, make sure to have Flutter installed on your machine. If it's not already installed, you can find installation instructions on the official Flutter website.
   
-  ## Installation
+  # Installation
   
   Follow these simple steps to run the News Read Application:
   
@@ -53,7 +53,7 @@ CraftyBay is an e-commerce application that provides a smooth user experience an
       flutter pub get
       ```
   
-  ## How to Run
+  # How to Run
   
   To run the application, follow these steps:
   
@@ -67,7 +67,7 @@ CraftyBay is an e-commerce application that provides a smooth user experience an
   
   Now, you're all set to explore the News Read Application on your device.
   
-  ## Additional Commands (Optional)
+  # Additional Commands (Optional)
   
   - You can run tests using the following command:
   
@@ -86,7 +86,70 @@ CraftyBay is an e-commerce application that provides a smooth user experience an
 ## Features
   
 ## Screenshots
-  
+
+  Here are some screenshots of the CraftyBay E-commerce Application:
+
+<table>
+  <tr>
+    <td align="center">
+      <img src="https://github.com/MehadiReaz/CraftyBay/assets/65062761/1748c125-1eac-4d83-afc4-a9a6f38d4a76" width="200"/>
+      <br />
+      Screenshot 1
+    </td>
+    <td align="center">
+      <img src="https://github.com/MehadiReaz/CraftyBay/assets/65062761/5ae55922-66b9-476a-9c48-d80aa11541a2" width="200"/>
+      <br />
+      Screenshot 2
+    </td>
+    <td align="center">
+      <img src="https://github.com/MehadiReaz/CraftyBay/assets/65062761/5507770c-6c6d-4094-9e1f-ec73ccebcc70" width="200"/>
+      <br />
+      Screenshot 3
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="https://github.com/MehadiReaz/CraftyBay/assets/65062761/2dd650bc-2d1b-41c1-94bd-9bee9f9d016c" width="200"/>
+      <br />
+      Screenshot 4
+    </td>
+    <td align="center">
+      <img src="https://github.com/MehadiReaz/CraftyBay/assets/65062761/ad1d8773-4e97-4ac9-bd60-0e9f9884c45c" width="200"/>
+      <br />
+      Screenshot 5
+    </td>
+    <td align="center">
+      <img src="https://github.com/MehadiReaz/CraftyBay/assets/65062761/98e39eb6-af5e-44c4-b011-ad90592f715a" width="200"/>
+      <br />
+      Screenshot 6
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="https://github.com/MehadiReaz/CraftyBay/assets/65062761/7f7f2507-cf10-4cd6-876d-d1cc90c1a620" width="200"/>
+      <br />
+      Screenshot 7
+    </td>
+    <td align="center">
+      <img src="https://github.com/MehadiReaz/CraftyBay/assets/65062761/b2e2dae3-ae6d-431e-aa84-04264ab43711" width="200"/>
+      <br />
+      Screenshot 8
+    </td>
+    <td align="center">
+      <img src="https://github.com/MehadiReaz/CraftyBay/assets/65062761/072a9cf7-08b4-44a2-b1f0-3e6fb6ce310e" width="200"/>
+      <br />
+      Screenshot 9
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="https://github.com/MehadiReaz/CraftyBay/assets/65062761/f173fb46-9451-4f4b-875e-27832ffbac48" width="200"/>
+      <br />
+      Screenshot 10
+    </td>
+  </tr>
+</table>
+
 ## Used Packages
   CraftyBay integrates the following packages to enhance functionality:
   http: ^1.1.0: The HTTP package provides a straightforward way to make HTTP requests in your Flutter app. It's essential for fetching data from APIs and working with web services.  
