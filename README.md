@@ -2,8 +2,8 @@
 
 CraftyBay is an e-commerce application that provides a smooth user experience and high security to the user.
 
-[![Flutter](https://img.shields.io/badge/Flutter-2.8.0-blue?logo=flutter)](https://flutter.dev/)
-[![Dart](https://img.shields.io/badge/Dart-2.15.0-blue?logo=dart)](https://dart.dev/)
+[![Flutter](https://img.shields.io/badge/Flutter-3.13.7-blue?logo=flutter)](https://flutter.dev/)
+[![Dart](https://img.shields.io/badge/Dart-3.1.3-blue?logo=dart)](https://dart.dev/)
 [![License](https://img.shields.io/badge/License-MIT-green)](LICENSE)
 
 ## Table of Contents
