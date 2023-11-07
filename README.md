@@ -86,29 +86,29 @@ CraftyBay is an e-commerce application that provides a smooth user experience an
   
 ## Features
 
-# Email Verification
-- Secure email verification to ensure user authentication.
-
-# OTP Verification
-- OTP-based user verification for enhanced security.
-
-# User Profile
-- User-friendly profile management.
-- Update and view user profiles.
-
-# Cart Management
-- Add products to the shopping cart.
-- Remove products from the cart for easy shopping.
-
-# Wishlist
-- Create and manage a wishlist of your favorite items.
-- Add and remove items from your wishlist.
-
-# Product Review
-- Read and write product reviews to make informed buying decisions.
-
- # Payment Gateway
-- A secure and efficient payment gateway for easy transactions.
+  # Email Verification
+  - Secure email verification to ensure user authentication.
+  
+  # OTP Verification
+  - OTP-based user verification for enhanced security.
+  
+  # User Profile
+  - User-friendly profile management.
+  - Update and view user profiles.
+  
+  # Cart Management
+  - Add products to the shopping cart.
+  - Remove products from the cart for easy shopping.
+  
+  # Wishlist
+  - Create and manage a wishlist of your favorite items.
+  - Add and remove items from your wishlist.
+  
+  # Product Review
+  - Read and write product reviews to make informed buying decisions.
+  
+   # Payment Gateway
+  - A secure and efficient payment gateway for easy transactions.
 
 CraftyBay is your one-stop solution for all your e-commerce needs, making your shopping experience more enjoyable and convenient.
 
